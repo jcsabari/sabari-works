@@ -1,0 +1,35 @@
+---
+// Video IDs for Color Correction
+const videos = ["LrLRhdBzadA", "queyOSWFKfk"];
+---
+<html lang="en" class="bg-[#050505] text-white">
+    <head>
+        <title>Color Correction | Sabari Works</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="p-8 md:p-20">
+        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-[0.4em] hover:text-white transition-colors">← Back to Hub</a>
+        
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mt-10 mb-20">
+            Color <span class="text-blue-600">Grading</span>
+        </h1>
+
+        <div class="space-y-20 max-w-6xl mx-auto">
+            {videos.map((id, index) => (
+                <div class="group">
+                    <div class="flex justify-between items-end mb-4">
+                        <span class="text-blue-500 font-mono text-xs uppercase tracking-widest">Project 0{index + 1}</span>
+                        <span class="text-gray-600 font-mono text-[10px] uppercase">16:9 Cinematic Aspect</span>
+                    </div>
+                    <div class="aspect-video rounded-3xl overflow-hidden border border-white/10 group-hover:border-blue-600/50 transition-all duration-500 shadow-2xl">
+                        <iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <footer class="mt-32 text-center">
+            <p class="text-gray-600 font-mono text-xs uppercase tracking-widest">End of Color Portfolio</p>
+        </footer>
+    </body>
+</html>

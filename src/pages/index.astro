@@ -1,0 +1,73 @@
+---
+const title = "Sabari Works";
+const showreelId = "x7VlLZrcX7Y";
+const resumeLink = "https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7";
+
+const categories = [
+  { name: "Client Works", slug: "client-works", desc: "7 Projects // Social Edits" },
+  { name: "Motion Graphics", slug: "motion-graphics", desc: "3 Projects // Dynamic Animation" },
+  { name: "VFX", slug: "vfx", desc: "2 Projects // Visual Effects" },
+  { name: "Color Correction", slug: "color-correction", desc: "2 Projects // Grading" },
+  { name: "3D Modelling", slug: "3d-modelling", desc: "10 Renders // Environments" },
+];
+---
+
+<html lang="en" class="bg-[#050505] text-white selection:bg-blue-500">
+	<head>
+		<meta charset="utf-8" />
+		<title>{title} | Portfolio</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+			<div class="absolute inset-0 z-0 opacity-40">
+				<iframe src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&controls=0&rel=0`} class="w-full h-full scale-[1.5] pointer-events-none" frameborder="0"></iframe>
+			</div>
+			<div class="relative z-10 text-center px-4">
+				<h1 class="text-7xl md:text-[12rem] font-black uppercase italic tracking-tighter leading-none">SABARI<br/><span class="text-blue-600">WORKS</span></h1>
+				<p class="font-mono text-blue-400 tracking-[0.6em] uppercase mt-6 md:text-xl">Editor // VFX // 3D Artist</p>
+			</div>
+		</section>
+
+		<section class="max-w-7xl mx-auto py-32 px-6">
+			<h2 class="text-xs font-mono text-blue-500 uppercase tracking-[0.5em] mb-12">Navigation / Select Category</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{categories.map(cat => (
+					<a href={`/${cat.slug}`} class="group relative aspect-square bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden hover:border-blue-600 transition-all duration-500">
+						<div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+						<div class="absolute inset-0 p-10 flex flex-col justify-end">
+							<h3 class="text-3xl font-black uppercase italic group-hover:text-blue-500 transition-colors">{cat.name}</h3>
+							<p class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mt-2">{cat.desc}</p>
+						</div>
+					</a>
+				))}
+				<a href={resumeLink} class="md:col-span-1 lg:col-span-1 bg-blue-600 rounded-3xl p-10 flex flex-col justify-end hover:bg-blue-500 transition-colors group">
+					<h3 class="text-3xl font-black uppercase italic text-black">Download<br/>Resume</h3>
+				</a>
+			</div>
+		</section>
+
+		<footer id="contact" class="max-w-7xl mx-auto py-32 px-6 border-t border-white/5">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+				<div>
+					<h2 class="text-6xl font-black uppercase italic tracking-tighter leading-none">Let's <span class="text-blue-600">Build</span></h2>
+					<p class="font-mono text-gray-500 mt-6 uppercase text-sm tracking-widest">Available for Freelance & Full-time</p>
+				</div>
+				<div class="space-y-10">
+					<div>
+						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Email</span>
+						<a href="mailto:sabari1132006@gmail.com" class="block text-2xl md:text-4xl font-bold hover:text-blue-500 transition-colors">sabari1132006@gmail.com</a>
+					</div>
+					<div>
+						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Phone</span>
+						<p class="text-2xl md:text-4xl font-bold">+91 9367778466</p>
+					</div>
+					<div>
+						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Network</span>
+						<a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank" class="block text-2xl md:text-4xl font-bold hover:text-blue-500 transition-colors italic">LinkedIn ↗</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

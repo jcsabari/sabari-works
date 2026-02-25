@@ -1,0 +1,17 @@
+---
+const videos = ["WrFH0C8b2Vs", "B1L4l9uIiyg"];
+---
+<html lang="en" class="bg-[#050505] text-white">
+	<head><script src="https://cdn.tailwindcss.com"></script></head>
+	<body class="p-10">
+		<a href="/" class="text-blue-500 font-mono text-xs tracking-widest uppercase">← Back</a>
+		<h1 class="text-6xl font-black uppercase italic mt-10 mb-20">VFX <span class="text-blue-600">Engine</span></h1>
+		<div class="space-y-12 max-w-5xl mx-auto">
+			{videos.map(id => (
+				<div class="aspect-video rounded-3xl overflow-hidden border border-white/10">
+					<iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+				</div>
+			))}
+		</div>
+	</body>
+</html>

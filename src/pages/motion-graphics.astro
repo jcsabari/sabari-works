@@ -1,0 +1,36 @@
+---
+// Video IDs for Motion Graphics
+const mainVideo = "H7f4mMpvh8k";
+const shorts = ["6uU8PRqiTQE", "dOW5-9EqCOU"];
+---
+<html lang="en" class="bg-[#050505] text-white">
+    <head>
+        <title>Motion Graphics | Sabari Works</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="p-8 md:p-20">
+        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-[0.4em] hover:text-white transition-colors">← Back to Hub</a>
+        
+        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mt-10 mb-16">
+            Motion <span class="text-blue-600">Graphics</span>
+        </h1>
+
+        <div class="mb-12">
+            <h2 class="text-blue-500 font-mono text-[10px] uppercase tracking-widest mb-4">Featured Project</h2>
+            <div class="aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-900/20">
+                <iframe src={`https://www.youtube.com/embed/${mainVideo}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+            {shorts.map(id => (
+                <div>
+                    <h2 class="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-4">Short / Loop</h2>
+                    <div class="aspect-[9/16] rounded-3xl overflow-hidden border border-white/10">
+                        <iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </body>
+</html>

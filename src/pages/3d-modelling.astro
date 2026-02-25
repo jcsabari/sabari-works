@@ -1,0 +1,17 @@
+---
+const images = ["1cKr6_itlPXbfVnvbsGu4USnwj48LpJIs", "1Tx1KVUbUAWwid58fHlu5ZP_NmvV3RZNa", "1Y5FlUbKRYbjB-cRXBY_tZ_BAlYhfdkVY", "11890jiP7hPEsYVkoDl5m82vEWGko8IXL", "1O80HKxeekN_KeLGOXomPAt61himquYlD", "19FV-H4E0U-nO5Ua8uV2y-pEeDjdA_j8l", "1H6bAYCFI14Zuv4DyoiCZggY5YF_NUzyi", "1zT7zjCw6HryCz1bPVyCivpCA4e4o7aLh", "1OqHSKznL9MGOquWGiARmyHHwoGijc383", "18LFN55-kerQeHvP3kdQzcBZHhJdR_hce"];
+---
+<html lang="en" class="bg-[#050505] text-white">
+    <head><script src="https://cdn.tailwindcss.com"></script></head>
+    <body class="p-10">
+        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-widest">← Back to Hub</a>
+        <h1 class="text-6xl font-black uppercase italic mt-10 mb-20">3D <span class="text-blue-600">Modelling</span></h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {images.map(id => (
+                <div class="rounded-3xl overflow-hidden border border-white/10 group">
+                    <img src={`https://drive.google.com/uc?id=${id}`} class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700" />
+                </div>
+            ))}
+        </div>
+    </body>
+</html>
