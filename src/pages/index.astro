@@ -1,73 +1,199 @@
 ---
-// CONFIG
-const showreelId = "x7VlLZrcX7Y"; 
-const resumeLink = "https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7";
-
-const categories = [
-  { name: "Client Works", slug: "client-works", desc: "Commercial // Social" },
-  { name: "VFX & Motion", slug: "vfx", desc: "Digital Artistry" },
-  { name: "3D Modelling", slug: "3d-modelling", desc: "CGI Environments" },
-  { name: "Color", slug: "color-correction", desc: "Visual Grading" },
-];
+/* No props needed */
 ---
 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sabari Works | Master Portfolio</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-		<style>
-			body { 
-				background-color: #000; 
-				color: #fff; 
-				font-family: 'Inter', sans-serif;
-				margin: 0;
-				padding: 0;
-				overflow-x: hidden;
-			}
-			.font-mono { font-family: 'Space Mono', monospace; }
-			
-			/* The "Dead Center" Wrapper */
-			.hero-container {
-				height: 100vh;
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-			}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabari Works</title>
 
-			.video-frame {
-				box-shadow: 0 0 100px rgba(37, 99, 235, 0.1);
-				border: 1px solid rgba(255, 255, 255, 0.05);
-				background: #0a0a0a;
-			}
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #eaeaea;
+      --blue: #1e90ff;
+      --border: rgba(255,255,255,0.15);
+    }
 
-			.action-box {
-				background: #050505;
-				border: 1px solid #111;
-				transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-			}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-			.action-box:hover {
-				border-color: #2563eb;
-				transform: translateY(-3px);
-			}
-		</style>
-	</head>
-	<body>
-		
-		<nav class="fixed top-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
-			<h2 class="font-900 italic text-2xl tracking-tighter pointer-events-auto">SABARI<span class="text-blue-600">.</span></h2>
-			<div class="flex gap-6 pointer-events-auto">
-				<a href={resumeLink} class="font-mono text-[10px] tracking-widest text-gray-500 hover:text-blue-500 transition-colors">CV_2026</a>
-				<a href="mailto:sabari1132006@gmail.com" class="font-mono text-[10px] tracking-widest text-gray-500 hover:text-blue-500 transition-colors">CONTACT</a>
-			</div>
-		</nav>
+    body {
+      background: var(--bg);
+      color: var(--text);
+    }
 
-		<section class="hero-container relative px-6">
-			
-			<div class="text-center mb-10">
-				<p class="font-mono text-
+    section {
+      padding: 80px 8%;
+    }
+
+    h1, h2 {
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      text-align: center;
+    }
+
+    .showreel {
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto 0;
+      aspect-ratio: 16 / 9;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ---------- GRID ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+    }
+
+    /* ---------- 3D ---------- */
+    .image-grid img {
+      width: 100%;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .image-grid img:hover {
+      border-color: var(--blue);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact a {
+      color: var(--text);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .contact a:hover {
+      color: var(--blue);
+    }
+
+    /* ---------- RESUME ---------- */
+    .resume-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 1px solid var(--blue);
+      color: var(--blue);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .resume-btn:hover {
+      background: var(--blue);
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO / MASTER SHOWREEL -->
+  <section class="hero">
+    <h1>Sabari Works</h1>
+    <div class="showreel">
+      <!-- Replace src with your actual showreel file -->
+      <video src="/showreel.mp4" controls width="100%"></video>
+    </div>
+  </section>
+
+  <!-- CLIENT WORK -->
+  <section>
+    <h2>Client Work</h2>
+    <div class="grid">
+      <div class="card">Project 01</div>
+      <div class="card">Project 02</div>
+      <div class="card">Project 03</div>
+    </div>
+  </section>
+
+  <!-- MOTION GRAPHICS -->
+  <section>
+    <h2>Motion Graphics</h2>
+    <div class="grid">
+      <div class="card">Motion 01</div>
+      <div class="card">Motion 02</div>
+    </div>
+  </section>
+
+  <!-- VFX -->
+  <section>
+    <h2>VFX</h2>
+    <div class="grid">
+      <div class="card">VFX Shot 01</div>
+      <div class="card">VFX Shot 02</div>
+    </div>
+  </section>
+
+  <!-- COLOR CORRECTION -->
+  <section>
+    <h2>Color Correction</h2>
+    <div class="grid">
+      <div class="card">Before / After 01</div>
+      <div class="card">Before / After 02</div>
+    </div>
+  </section>
+
+  <!-- 3D MODELLING -->
+  <section>
+    <h2>3D Modelling</h2>
+    <div class="grid image-grid">
+      <img src="/render1.jpg" alt="3D Render 1" />
+      <img src="/render2.jpg" alt="3D Render 2" />
+      <img src="/render3.jpg" alt="3D Render 3" />
+      <img src="/render4.jpg" alt="3D Render 4" />
+      <img src="/render5.jpg" alt="3D Render 5" />
+      <img src="/render6.jpg" alt="3D Render 6" />
+      <img src="/render7.jpg" alt="3D Render 7" />
+      <img src="/render8.jpg" alt="3D Render 8" />
+      <img src="/render9.jpg" alt="3D Render 9" />
+      <img src="/render10.jpg" alt="3D Render 10" />
+    </div>
+  </section>
+
+  <!-- RESUME DOWNLOAD -->
+  <section>
+    <h2>Resume</h2>
+    <a href="/resume.pdf" download class="resume-btn">
+      Download Resume
+    </a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a>
+    <a href="mailto:yourmail@email.com">yourmail@email.com</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">
+      LinkedIn
+    </a>
+  </section>
+
+</body>
+</html>
