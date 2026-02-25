@@ -2,11 +2,9 @@
 const title = "Client Works | Sabari Works";
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>{title}</title>
-
   <style>
     :root {
       --bg: #0b0f14;
@@ -30,23 +28,6 @@ const title = "Client Works | Sabari Works";
       padding: 20px 10% 80px;
     }
 
-    h1 {
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    p {
-      opacity: 0.8;
-      max-width: 600px;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -56,9 +37,9 @@ const title = "Client Works | Sabari Works";
 
     .card {
       border: 1px solid var(--border);
+      border-radius: 6px;
       overflow: hidden;
       transition: 0.3s ease;
-      border-radius: 6px;
     }
 
     .card:hover {
@@ -70,55 +51,32 @@ const title = "Client Works | Sabari Works";
       width: 100%;
       aspect-ratio: 9 / 16;
       border: none;
-      display: block;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <h1>Client Works</h1>
+    <p>Selected client projects focused on clean edits and strong pacing.</p>
+    <a href="/">← Back to Home</a>
+  </header>
 
-<header>
-  <h1>Client Works</h1>
-  <p>
-    A selection of client projects focused on strong pacing,
-    clean edits, and platform-ready storytelling.
-  </p>
-  <a href="/" class="back">← Back to Home</a>
-</header>
-
-<section>
-  <div class="grid">
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/e50q35cDChw" allowfullscreen></iframe>
+  <section>
+    <div class="grid">
+      <div class="card"><iframe src="https://www.youtube.com/embed/e50q35cDChw" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/LLNj1s4T8Dg" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/qomMmZ8wyOc" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/DvWhsELYp_4" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/Z1gQcLdh9iM" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/1UM5r-VKHV0" allowfullscreen></iframe></div>
+      <div class="card"><iframe src="https://www.youtube.com/embed/f8mYfRMoSB8" allowfullscreen></iframe></div>
     </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/LLNj1s4T8Dg" allowfullscreen></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/qomMmZ8wyOc" allowfullscreen></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/DvWhsELYp_4" allowfullscreen></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/Z1gQcLdh9iM" allowfullscreen></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/1UM5r-VKHV0" allowfullscreen></iframe>
-    </div>
-
-    <div class="card">
-      <iframe src="https://www.youtube.com/embed/f8mYfRMoSB8" allowfullscreen></iframe>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 </body>
 </html>
