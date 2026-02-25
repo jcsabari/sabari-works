@@ -57,8 +57,9 @@ const title = "3D Modelling | Sabari Works";
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
-      transition: 0.3s ease;
       background: #0f141a;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .card:hover {
@@ -71,7 +72,30 @@ const title = "3D Modelling | Sabari Works";
       display: block;
     }
 
-  
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 6px;
+    }
   </style>
 </head>
 
@@ -80,28 +104,51 @@ const title = "3D Modelling | Sabari Works";
 <header>
   <h1>3D Modelling</h1>
   <p>
-    Selected 3D models focused on form, proportions, and clean topology,
-    presented through studio-style renders.
+    A selection of 3D models focused on form, clean topology,
+    and studio-style presentation.
   </p>
   <a href="/" class="back">← Back to Home</a>
 </header>
 
 <section>
   <div class="grid">
-
-    <div class="card"><img src="/render1.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render2.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render3.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render4.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render5.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render6.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render7.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render8.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render9.jpg" alt="3D render"></div>
-    <div class="card"><img src="/render10.jpg" alt="3D render"></div>
-
+    <div class="card"><img src="/render1.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render2.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render3.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render4.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render5.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render6.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render7.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render8.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render9.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    <div class="card"><img src="/render10.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
   </div>
 </section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="Preview">
+</div>
+
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add("active");
+  }
+
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      lightbox.classList.remove("active");
+    }
+  });
+</script>
+
 </body>
 </html>
-
