@@ -27,16 +27,26 @@ const categories = [
 				color: white; 
 				font-family: 'Inter', sans-serif;
 				margin: 0;
+				overflow-x: hidden;
 			}
 			.font-mono { font-family: 'Space Mono', monospace; }
 			
-			/* Background Grid */
-			.bg-grid {
-				background-image: radial-gradient(circle at 1px 1px, #111 1px, transparent 0);
-				background-size: 40px 40px;
+			/* Scanline effect */
+			body::before {
+				content: " ";
+				position: fixed;
+				top: 0; left: 0; bottom: 0; right: 0;
+				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+				z-index: 100;
+				background-size: 100% 2px, 3px 100%;
+				pointer-events: none;
 			}
 
-			/* Cinematic Glows */
+			.video-glow {
+				box-shadow: 0 0 50px rgba(37, 99, 235, 0.2);
+				border: 1px solid rgba(37, 99, 235, 0.3);
+			}
+
 			.neo-card {
 				background: #050505;
 				border: 1px solid #111;
@@ -44,102 +54,54 @@ const categories = [
 			}
 			.neo-card:hover {
 				border-color: var(--blue);
-				box-shadow: 0 0 40px rgba(37, 99, 235, 0.15);
+				box-shadow: 0 0 40px rgba(37, 99, 235, 0.1);
 				transform: translateY(-5px);
-			}
-
-			/* Hero Video Vignette */
-			.vignette {
-				background: radial-gradient(circle, transparent 20%, #000 100%);
-			}
-
-			.hero-text {
-				text-shadow: 0 0 20px rgba(0,0,0,0.8);
 			}
 		</style>
 	</head>
-	<body class="bg-grid">
+	<body class="bg-[#000]">
 		
-		<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-			<div class="absolute inset-0 z-0">
-				<iframe 
-					src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&controls=0&rel=0&modestbranding=1`} 
-					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] object-cover opacity-50 pointer-events-none scale-125" 
-					frameborder="0">
-				</iframe>
-				<div class="vignette absolute inset-0"></div>
+		<nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center bg-gradient-to-b from-black to-transparent">
+			<div class="flex items-center gap-2">
+				<div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+				<span class="font-mono text-[10px] tracking-[0.4em] uppercase">Status: Online</span>
 			</div>
-			
-			<div class="relative z-10 text-center px-4 hero-text">
-				<div class="flex items-center justify-center gap-3 mb-6">
-					<span class="h-[1px] w-8 bg-blue-600"></span>
-					<p class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.5em] font-bold">System Online // 2026</p>
-					<span class="h-[1px] w-8 bg-blue-600"></span>
-				</div>
-				<h1 class="text-7xl md:text-[12rem] font-900 italic uppercase tracking-tighter leading-none m-0">
-					SABARI<br/><span class="text-blue-600">WORKS</span>
+			<div class="font-mono text-[10px] tracking-[0.4em] uppercase text-gray-500">Sabari_Works // v2.0</div>
+		</nav>
+
+		<section class="min-h-screen w-full flex flex-col items-center justify-center px-4 pt-20">
+			<div class="text-center mb-10">
+				<h1 class="text-6xl md:text-[9rem] font-900 italic uppercase tracking-tighter leading-none m-0">
+					SABARI<span class="text-blue-600">.WORKS</span>
 				</h1>
-				<div class="mt-10 flex flex-wrap justify-center gap-4 text-[10px] font-mono text-gray-500 uppercase tracking-widest">
-					<span>VFX Artist</span> • <span>3D Generalist</span> • <span>Video Editor</span>
-				</div>
+				<p class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mt-4">2026 Master Showreel</p>
 			</div>
-			
-			<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-				<div class="w-[1px] h-12 bg-gradient-to-b from-blue-600 to-transparent"></div>
+
+			<div class="relative w-full max-w-5xl aspect-video video-glow rounded-sm overflow-hidden bg-zinc-900">
+				<iframe 
+					src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&modestbranding=1&rel=0`} 
+					class="absolute inset-0 w-full h-full" 
+					frameborder="0" 
+					allow="autoplay; encrypted-media" 
+					allowfullscreen>
+				</iframe>
+			</div>
+
+			<div class="mt-8 flex gap-10 font-mono text-[9px] text-gray-600 uppercase tracking-widest">
+				<div class="flex flex-col"><span class="text-blue-500">RES:</span> 4K UHD</div>
+				<div class="flex flex-col"><span class="text-blue-500">FPS:</span> 24/60</div>
+				<div class="flex flex-col"><span class="text-blue-500">ENGINE:</span> AE/MAYA/VRAY</div>
 			</div>
 		</section>
 
 		<section class="max-w-7xl mx-auto py-32 px-6">
-			<div class="mb-20">
-				<h2 class="text-xs font-mono text-blue-500 uppercase tracking-[0.4em] mb-4">// SELECT_PROJECT_TYPE</h2>
-				<div class="h-[1px] w-full bg-gray-900"></div>
+			<div class="flex items-end justify-between mb-12 border-b border-zinc-900 pb-6">
+				<h2 class="text-4xl font-black italic uppercase">Project_Archive</h2>
+				<span class="font-mono text-[10px] text-gray-600 mb-2">Sorted by Category // 001-005</span>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
 				{categories.map(cat => (
-					<a href={`/${cat.slug}`} class={`neo-card ${cat.grid} group relative p-10 rounded-sm min-h-[300px] flex flex-col justify-end overflow-hidden`}>
-						<div class="absolute top-0 right-0 p-6 font-mono text-[10px] text-gray-800 group-hover:text-blue-900 transition-colors">
-							FILE_REF: 00{categories.indexOf(cat) + 1}
-						</div>
-						<div class="relative z-10">
-							<h3 class="text-4xl font-black uppercase italic leading-none mb-2 group-hover:text-blue-600 transition-colors">{cat.name}</h3>
-							<p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">{cat.desc}</p>
-						</div>
-						<div class="absolute bottom-0 left-0 h-1 w-0 bg-blue-600 group-hover:w-full transition-all duration-700"></div>
-					</a>
-				))}
-
-				<a href={resumeLink} target="_blank" class="md:col-span-12 bg-blue-600 p-12 rounded-sm flex flex-col md:flex-row items-center justify-between hover:bg-white transition-all duration-500 group">
-					<h3 class="text-4xl md:text-6xl font-black uppercase italic text-black leading-none group-hover:tracking-widest transition-all">Download_Resume</h3>
-					<span class="text-black font-mono font-bold mt-4 md:mt-0">VERSION_2026.PDF</span>
-				</a>
-			</div>
-		</section>
-
-		<footer class="max-w-7xl mx-auto pb-20 px-6 mt-20">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 border-t border-gray-900 pt-20">
-				<div>
-					<h2 class="text-6xl font-900 uppercase italic tracking-tighter leading-none">CONNECT<br/><span class="text-blue-600">DIRECT</span></h2>
-					<p class="font-mono text-gray-600 mt-8 uppercase text-xs tracking-[0.3em]">Operational Location: Tamil Nadu, India</p>
-				</div>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-					<div>
-						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">Email_ID</p>
-						<a href="mailto:sabari1132006@gmail.com" class="text-xl font-bold hover:text-blue-600 transition-colors">sabari1132006@gmail.com</a>
-					</div>
-					<div>
-						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">WhatsApp</p>
-						<p class="text-xl font-bold">+91 9367778466</p>
-					</div>
-					<div class="md:col-span-2">
-						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">Professional_Network</p>
-						<a href="https://www.linkedin.com/in/sabari-jc-357007369" class="text-4xl font-black italic uppercase hover:text-blue-600 transition-all">LinkedIn_Profile ↗</a>
-					</div>
-				</div>
-			</div>
-			<div class="mt-40 text-center font-mono text-[10px] text-gray-800 tracking-[1em] uppercase">
-				Sabari Works © 2026 All Rights Reserved
-			</div>
-		</footer>
-	</body>
-</html>
+					<a href={`/${cat.slug}`} class={`neo-card ${cat.grid} group relative p-10 min-h-[280px] flex flex-col justify-end`}>
+						<div class="absolute top-6 left-6 font-mono text-[9px] text-zinc-800 group-hover:text-blue-600 transition-colors">
+							FILE_ID: {
