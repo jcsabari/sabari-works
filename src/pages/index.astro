@@ -1,14 +1,15 @@
 ---
+// SYSTEM CONFIG
 const title = "Sabari Works";
 const showreelId = "x7VlLZrcX7Y";
 const resumeLink = "https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7";
 
 const categories = [
-  { name: "Client Works", slug: "client-works", desc: "7 Projects // Social Edits" },
-  { name: "Motion Graphics", slug: "motion-graphics", desc: "3 Projects // Dynamic Animation" },
-  { name: "VFX", slug: "vfx", desc: "2 Projects // Visual Effects" },
-  { name: "Color Correction", slug: "color-correction", desc: "2 Projects // Grading" },
-  { name: "3D Modelling", slug: "3d-modelling", desc: "10 Renders // Environments" },
+  { name: "Client Works", slug: "client-works", desc: "Commercial & Social", grid: "md:col-span-8" },
+  { name: "VFX", slug: "vfx", desc: "Compositing & FX", grid: "md:col-span-4" },
+  { name: "3D Modelling", slug: "3d-modelling", desc: "Environments & Props", grid: "md:col-span-4" },
+  { name: "Motion", slug: "motion-graphics", desc: "Dynamic Animation", grid: "md:col-span-4" },
+  { name: "Color", slug: "color-correction", desc: "Grading & LookDev", grid: "md:col-span-4" },
 ];
 ---
 
@@ -18,122 +19,126 @@ const categories = [
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{title} | Portfolio</title>
 		<script src="https://cdn.tailwindcss.com"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 		<style>
-			/* Fallback core styles */
+			:root { --blue: #2563eb; --black: #000000; }
 			body { 
-				background-color: #050505; 
+				background-color: var(--black); 
 				color: white; 
-				margin: 0; 
-				font-family: 'Segoe UI', Tahoma, sans-serif; 
-				overflow-x: hidden;
+				font-family: 'Inter', sans-serif;
+				margin: 0;
 			}
+			.font-mono { font-family: 'Space Mono', monospace; }
 			
-			/* Pure Black & Blue Theme Settings */
-			.text-blue { color: #2563eb; }
-			.bg-blue { background-color: #2563eb; }
-			
-			/* Glassmorphism Effect */
-			.glass-card {
-				background: rgba(255, 255, 255, 0.02);
-				backdrop-filter: blur(12px);
-				-webkit-backdrop-filter: blur(12px);
-				border: 1px solid rgba(255, 255, 255, 0.1);
+			/* Background Grid */
+			.bg-grid {
+				background-image: radial-gradient(circle at 1px 1px, #111 1px, transparent 0);
+				background-size: 40px 40px;
 			}
 
-			.glass-card:hover {
-				border-color: #2563eb;
-				background: rgba(37, 99, 235, 0.05);
+			/* Cinematic Glows */
+			.neo-card {
+				background: #050505;
+				border: 1px solid #111;
+				transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 			}
-			
-			/* Video Background Scaling */
-			.hero-video-container {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 100vw;
-				height: 56.25vw; /* 16:9 ratio */
-				min-height: 100vh;
-				min-width: 177.77vh; /* 16:9 ratio */
-				transform: translate(-50%, -50%);
-				pointer-events: none;
-				opacity: 0.35; /* Darkened for readability */
+			.neo-card:hover {
+				border-color: var(--blue);
+				box-shadow: 0 0 40px rgba(37, 99, 235, 0.15);
+				transform: translateY(-5px);
 			}
-			
+
+			/* Hero Video Vignette */
 			.vignette {
-				position: absolute;
-				inset: 0;
-				background: radial-gradient(circle, transparent 20%, #050505 100%);
-				pointer-events: none;
+				background: radial-gradient(circle, transparent 20%, #000 100%);
+			}
+
+			.hero-text {
+				text-shadow: 0 0 20px rgba(0,0,0,0.8);
 			}
 		</style>
 	</head>
-	<body class="selection:bg-blue-600">
+	<body class="bg-grid">
 		
 		<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-			<div class="absolute inset-0 z-0 bg-[#050505]">
+			<div class="absolute inset-0 z-0">
 				<iframe 
 					src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&controls=0&rel=0&modestbranding=1`} 
-					class="hero-video-container" 
+					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115vw] h-[115vh] object-cover opacity-50 pointer-events-none scale-125" 
 					frameborder="0">
 				</iframe>
-				<div class="vignette"></div>
+				<div class="vignette absolute inset-0"></div>
 			</div>
 			
-			<div class="relative z-10 text-center px-4">
-				<h1 class="text-7xl md:text-[10rem] font-black uppercase italic tracking-tighter leading-none">
-					SABARI<br/><span class="text-blue">WORKS</span>
+			<div class="relative z-10 text-center px-4 hero-text">
+				<div class="flex items-center justify-center gap-3 mb-6">
+					<span class="h-[1px] w-8 bg-blue-600"></span>
+					<p class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.5em] font-bold">System Online // 2026</p>
+					<span class="h-[1px] w-8 bg-blue-600"></span>
+				</div>
+				<h1 class="text-7xl md:text-[12rem] font-900 italic uppercase tracking-tighter leading-none m-0">
+					SABARI<br/><span class="text-blue-600">WORKS</span>
 				</h1>
-				<p class="font-mono text-blue tracking-[0.6em] uppercase mt-6 md:text-xl font-bold">Editor // VFX // 3D Artist</p>
+				<div class="mt-10 flex flex-wrap justify-center gap-4 text-[10px] font-mono text-gray-500 uppercase tracking-widest">
+					<span>VFX Artist</span> • <span>3D Generalist</span> • <span>Video Editor</span>
+				</div>
+			</div>
+			
+			<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+				<div class="w-[1px] h-12 bg-gradient-to-b from-blue-600 to-transparent"></div>
 			</div>
 		</section>
 
 		<section class="max-w-7xl mx-auto py-32 px-6">
-			<div class="flex items-center gap-4 mb-12">
-				<div class="h-[2px] w-12 bg-blue-600"></div>
-				<h2 class="text-sm font-mono text-blue-500 uppercase tracking-[0.5em]">Selected Works</h2>
+			<div class="mb-20">
+				<h2 class="text-xs font-mono text-blue-500 uppercase tracking-[0.4em] mb-4">// SELECT_PROJECT_TYPE</h2>
+				<div class="h-[1px] w-full bg-gray-900"></div>
 			</div>
-			
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+			<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
 				{categories.map(cat => (
-					<a href={`/${cat.slug}`} class="glass-card group relative aspect-square rounded-3xl overflow-hidden transition-all duration-500 flex flex-col justify-end p-10">
-						<h3 class="text-3xl font-black uppercase italic group-hover:text-blue-500 transition-colors leading-none z-10">{cat.name}</h3>
-						<p class="text-xs font-mono text-gray-500 uppercase tracking-widest mt-4 z-10">{cat.desc}</p>
+					<a href={`/${cat.slug}`} class={`neo-card ${cat.grid} group relative p-10 rounded-sm min-h-[300px] flex flex-col justify-end overflow-hidden`}>
+						<div class="absolute top-0 right-0 p-6 font-mono text-[10px] text-gray-800 group-hover:text-blue-900 transition-colors">
+							FILE_REF: 00{categories.indexOf(cat) + 1}
+						</div>
+						<div class="relative z-10">
+							<h3 class="text-4xl font-black uppercase italic leading-none mb-2 group-hover:text-blue-600 transition-colors">{cat.name}</h3>
+							<p class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">{cat.desc}</p>
+						</div>
+						<div class="absolute bottom-0 left-0 h-1 w-0 bg-blue-600 group-hover:w-full transition-all duration-700"></div>
 					</a>
 				))}
+
+				<a href={resumeLink} target="_blank" class="md:col-span-12 bg-blue-600 p-12 rounded-sm flex flex-col md:flex-row items-center justify-between hover:bg-white transition-all duration-500 group">
+					<h3 class="text-4xl md:text-6xl font-black uppercase italic text-black leading-none group-hover:tracking-widest transition-all">Download_Resume</h3>
+					<span class="text-black font-mono font-bold mt-4 md:mt-0">VERSION_2026.PDF</span>
+				</a>
 			</div>
 		</section>
 
-		<footer id="contact" class="max-w-7xl mx-auto py-32 px-6 border-t border-white/10">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-				
-				<div class="flex flex-col justify-between">
+		<footer class="max-w-7xl mx-auto pb-20 px-6 mt-20">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 border-t border-gray-900 pt-20">
+				<div>
+					<h2 class="text-6xl font-900 uppercase italic tracking-tighter leading-none">CONNECT<br/><span class="text-blue-600">DIRECT</span></h2>
+					<p class="font-mono text-gray-600 mt-8 uppercase text-xs tracking-[0.3em]">Operational Location: Tamil Nadu, India</p>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 					<div>
-						<h2 class="text-6xl font-black uppercase italic tracking-tighter leading-none mb-4">Let's <span class="text-blue">Build</span></h2>
-						<p class="font-mono text-gray-500 uppercase text-sm tracking-widest">Available for Freelance & Full-time</p>
+						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">Email_ID</p>
+						<a href="mailto:sabari1132006@gmail.com" class="text-xl font-bold hover:text-blue-600 transition-colors">sabari1132006@gmail.com</a>
 					</div>
-					
-					<div class="mt-12">
-						<a href={resumeLink} target="_blank" class="inline-block bg-blue text-white font-black uppercase italic text-2xl py-6 px-12 rounded-full hover:bg-white hover:text-black transition-colors duration-300">
-							Download Resume ↓
-						</a>
+					<div>
+						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">WhatsApp</p>
+						<p class="text-xl font-bold">+91 9367778466</p>
+					</div>
+					<div class="md:col-span-2">
+						<p class="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-4">Professional_Network</p>
+						<a href="https://www.linkedin.com/in/sabari-jc-357007369" class="text-4xl font-black italic uppercase hover:text-blue-600 transition-all">LinkedIn_Profile ↗</a>
 					</div>
 				</div>
-
-				<div class="space-y-12">
-					<div>
-						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Direct Email</span>
-						<a href="mailto:sabari1132006@gmail.com" class="block text-2xl md:text-4xl font-bold hover:text-blue-500 transition-colors truncate mt-2">sabari1132006@gmail.com</a>
-					</div>
-					<div>
-						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Phone / WhatsApp</span>
-						<p class="text-2xl md:text-4xl font-bold mt-2">+91 9367778466</p>
-					</div>
-					<div>
-						<span class="text-[10px] font-mono text-blue-500 uppercase tracking-[0.3em]">Professional Network</span>
-						<a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank" class="block text-2xl md:text-4xl font-bold text-blue hover:text-white transition-colors italic mt-2 underline underline-offset-8">LinkedIn ↗</a>
-					</div>
-				</div>
-
+			</div>
+			<div class="mt-40 text-center font-mono text-[10px] text-gray-800 tracking-[1em] uppercase">
+				Sabari Works © 2026 All Rights Reserved
 			</div>
 		</footer>
 	</body>
