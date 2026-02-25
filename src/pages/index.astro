@@ -12,19 +12,60 @@ const categories = [
 ];
 ---
 
-<html lang="en" class="bg-[#050505] text-white selection:bg-blue-500">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{title} | Portfolio</title>
 		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			/* Direct CSS for the Glass Effect & Background */
+			body { background-color: #050505; color: white; margin: 0; font-family: sans-serif; }
+			
+			.glass-card {
+				background: rgba(255, 255, 255, 0.03);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			
+			.hero-video-container {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				min-width: 100%;
+				min-height: 100%;
+				width: auto;
+				height: auto;
+				transform: translate(-50%, -50%);
+				pointer-events: none;
+				opacity: 0.4;
+			}
+			
+			.vignette {
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(circle, transparent 20%, #050505 100%);
+				pointer-events: none;
+			}
+		</style>
 	</head>
-	<body>
+	<body class="selection:bg-blue-500">
+		
 		<section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-			<div class="absolute inset-0 z-0 opacity-40">
-				<iframe src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&controls=0&rel=0`} class="w-full h-full scale-[1.5] pointer-events-none" frameborder="0"></iframe>
+			<div class="absolute inset-0 z-0">
+				<iframe 
+					src={`https://www.youtube.com/embed/${showreelId}?autoplay=1&mute=1&loop=1&playlist=${showreelId}&controls=0&rel=0&modestbranding=1`} 
+					class="hero-video-container scale-[1.5]" 
+					frameborder="0">
+				</iframe>
+				<div class="vignette"></div>
 			</div>
+			
 			<div class="relative z-10 text-center px-4">
-				<h1 class="text-7xl md:text-[12rem] font-black uppercase italic tracking-tighter leading-none">SABARI<br/><span class="text-blue-600">WORKS</span></h1>
+				<h1 class="text-7xl md:text-[10rem] font-black uppercase italic tracking-tighter leading-none">
+					SABARI<br/><span class="text-blue-600">WORKS</span>
+				</h1>
 				<p class="font-mono text-blue-400 tracking-[0.6em] uppercase mt-6 md:text-xl">Editor // VFX // 3D Artist</p>
 			</div>
 		</section>
@@ -33,16 +74,15 @@ const categories = [
 			<h2 class="text-xs font-mono text-blue-500 uppercase tracking-[0.5em] mb-12">Navigation / Select Category</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{categories.map(cat => (
-					<a href={`/${cat.slug}`} class="group relative aspect-square bg-[#0a0a0a] border border-white/10 rounded-3xl overflow-hidden hover:border-blue-600 transition-all duration-500">
+					<a href={`/${cat.slug}`} class="glass-card group relative aspect-square rounded-3xl overflow-hidden hover:border-blue-600 transition-all duration-500 flex flex-col justify-end p-10">
 						<div class="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-						<div class="absolute inset-0 p-10 flex flex-col justify-end">
-							<h3 class="text-3xl font-black uppercase italic group-hover:text-blue-500 transition-colors">{cat.name}</h3>
-							<p class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mt-2">{cat.desc}</p>
-						</div>
+						<h3 class="text-3xl font-black uppercase italic group-hover:text-blue-500 transition-colors leading-none">{cat.name}</h3>
+						<p class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mt-4">{cat.desc}</p>
 					</a>
 				))}
-				<a href={resumeLink} class="md:col-span-1 lg:col-span-1 bg-blue-600 rounded-3xl p-10 flex flex-col justify-end hover:bg-blue-500 transition-colors group">
-					<h3 class="text-3xl font-black uppercase italic text-black">Download<br/>Resume</h3>
+				
+				<a href={resumeLink} class="md:col-span-1 lg:col-span-1 bg-blue-600 rounded-3xl p-10 flex flex-col justify-end hover:bg-white transition-all duration-500 group">
+					<h3 class="text-3xl font-black uppercase italic text-black leading-none">Download<br/>Resume</h3>
 				</a>
 			</div>
 		</section>
