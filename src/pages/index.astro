@@ -4,146 +4,102 @@ const title = "Sabari Works";
 
 <html lang="en">
 <head>
-  <title>{title}</title>
-  <style>
-    :root {
-      --bg: #0b0f14;
-      --blue: #1e90ff;
-      --text: #e6e6e6;
-      --border: #1f2a36;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    section {
-      padding: 80px 10%;
-    }
-
-    h1, h2 {
-      margin-bottom: 24px;
-      font-weight: 600;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      padding: 30px;
-      text-align: center;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      border-color: var(--blue);
-      transform: translateY(-6px);
-    }
-
-    iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-    }
-
-    a {
-      color: var(--blue);
-      text-decoration: none;
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- HERO / SHOWREEL -->
-<section>
-  <h1>Sabari Works</h1>
-  <iframe
-    src="https://www.youtube.com/embed/x7VlLZrcX7Y"
-    allowfullscreen>
-  </iframe>
-</section>
-
-<!-- WORK CATEGORIES -->
-<section>
-  <h2>Work</h2>
-  <div class="grid">
-
-    <a href="/client-work" class="card">Client Works</a>
-    <a href="/motion-graphics" class="card">Motion Graphics</a>
-    <a href="/vfx" class="card">VFX</a>
-    <a href="/color-correction" class="card">Color Correction</a>
-    <a href="/3d-modelling" class="card">3D Modelling</a>
-
-  </div>
-</section>
-
-<section id="contact" class="contact-section">
-
-  <h2 class="section-title">Contact</h2>
-
-  <div class="contact-grid">
-
-    <div class="contact-card">
-      <h3>Email</h3>
-      <a href="mailto:sabari1132006@gmail.com">
-        sabari1132006@gmail.com
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <h3>Phone</h3>
-      <a href="tel:+919367778466">
-        +91 9367778466
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <h3>LinkedIn</h3>
-      <a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
-        sabari-jc-357007369
-      </a>
-    </div>
-
-  </div>
-
-  <div class="resume-box">
-    <h2>Resume</h2>
-
-    <p>Download my latest resume to see my skills and experience.</p>
-
-    <a href="/sabari_resume.pdf" class="resume-btn" target="_blank">
-      View Resume
-    </a>
-
-    <a href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7"
-       class="resume-btn download"
-       target="_blank">
-      Download Resume
-    </a>
-
-  </div>
-
-</section>
+<title>{title}</title>
 
 <style>
 
-.contact-section{
-  padding:80px 20px;
+:root{
+  --bg:#020617;
+  --text:#e6e6e6;
+  --blue:#38bdf8;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,sans-serif;
+  color:var(--text);
+
+  background:
+  radial-gradient(circle at 20% 20%, #1e3a8a33, transparent 40%),
+  radial-gradient(circle at 80% 80%, #9333ea33, transparent 40%),
+  var(--bg);
+}
+
+/* layout */
+
+section{
+  padding:80px 10%;
+}
+
+h1,h2{
+  margin-bottom:24px;
+  font-weight:600;
+}
+
+/* hero */
+
+.hero{
   text-align:center;
 }
 
-.section-title{
-  font-size:34px;
-  margin-bottom:40px;
+.hero h1{
+  font-size:42px;
+}
+
+/* grid */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+}
+
+/* glass cards */
+
+.card{
+  padding:30px;
+  text-align:center;
+  cursor:pointer;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+
+  transition:all .3s ease;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:var(--blue);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* video */
+
+iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
+  border-radius:12px;
+}
+
+/* links */
+
+a{
+  color:var(--blue);
+  text-decoration:none;
+}
+
+/* contact */
+
+.contact-section{
+  text-align:center;
 }
 
 .contact-grid{
@@ -156,52 +112,161 @@ const title = "Sabari Works";
 }
 
 .contact-card{
-  background:#1e293b;
   padding:30px;
-  border-radius:14px;
-  transition:0.3s;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.1);
+
+  transition:.3s;
 }
 
 .contact-card:hover{
-  transform:translateY(-6px);
-  background:#334155;
+  transform:translateY(-8px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
 }
 
-.contact-card h3{
-  margin-bottom:10px;
-}
-
-.contact-card a{
-  color:#38bdf8;
-  text-decoration:none;
-}
+/* resume */
 
 .resume-box{
   max-width:600px;
   margin:auto;
-  background:#1e293b;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.1);
+
   padding:40px;
-  border-radius:16px;
 }
+
+/* buttons */
 
 .resume-btn{
   display:inline-block;
   margin:10px;
   padding:12px 28px;
+
   border-radius:8px;
-  background:#38bdf8;
+
+  background:var(--blue);
   color:black;
   font-weight:600;
-  text-decoration:none;
-  transition:0.3s;
+
+  box-shadow:0 0 12px var(--blue);
+
+  transition:.3s;
 }
 
 .resume-btn:hover{
   transform:translateY(-3px);
+  box-shadow:0 0 25px var(--blue);
 }
 
 .download{
   background:#22c55e;
+  box-shadow:0 0 12px #22c55e;
+}
+
+.download:hover{
+  box-shadow:0 0 25px #22c55e;
 }
 
 </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Sabari Works</h1>
+
+<iframe
+src="https://www.youtube.com/embed/x7VlLZrcX7Y"
+allowfullscreen>
+</iframe>
+
+</section>
+
+
+<!-- WORK -->
+
+<section>
+
+<h2>Work</h2>
+
+<div class="grid">
+
+<a href="/client-work" class="card">Client Works</a>
+<a href="/motion-graphics" class="card">Motion Graphics</a>
+<a href="/vfx" class="card">VFX</a>
+<a href="/color-correction" class="card">Color Correction</a>
+<a href="/3d-modelling" class="card">3D Modelling</a>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact-section">
+
+<h2>Contact</h2>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<h3>Email</h3>
+<a href="mailto:sabari1132006@gmail.com">
+sabari1132006@gmail.com
+</a>
+</div>
+
+<div class="contact-card">
+<h3>Phone</h3>
+<a href="tel:+919367778466">
++91 9367778466
+</a>
+</div>
+
+<div class="contact-card">
+<h3>LinkedIn</h3>
+<a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
+sabari-jc-357007369
+</a>
+</div>
+
+</div>
+
+
+<div class="resume-box">
+
+<h2>Resume</h2>
+
+<p>Download my latest resume to see my skills and experience.</p>
+
+<a href="/sabari_resume.pdf" class="resume-btn" target="_blank">
+View Resume
+</a>
+
+<a
+href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7"
+class="resume-btn download"
+target="_blank">
+
+Download Resume
+
+</a>
+
+</div>
+
+</section>
+
+</body>
+</html>
