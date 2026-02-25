@@ -1,199 +1,111 @@
 ---
-/* No props needed */
+const title = "Sabari Works";
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sabari Works</title>
-
+  <title>{title}</title>
   <style>
     :root {
-      --bg: #000000;
-      --text: #eaeaea;
+      --bg: #0b0f14;
       --blue: #1e90ff;
-      --border: rgba(255,255,255,0.15);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      --text: #e6e6e6;
+      --border: #1f2a36;
     }
 
     body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
 
     section {
-      padding: 80px 8%;
+      padding: 80px 10%;
     }
 
     h1, h2 {
-      font-weight: 500;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
+      font-weight: 600;
     }
 
-    /* ---------- HERO ---------- */
-    .hero {
-      text-align: center;
-    }
-
-    .showreel {
-      width: 100%;
-      max-width: 900px;
-      margin: 40px auto 0;
-      aspect-ratio: 16 / 9;
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ---------- GRID ---------- */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
     .card {
       border: 1px solid var(--border);
-      padding: 20px;
+      padding: 30px;
       text-align: center;
-      transition: 0.3s;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
 
     .card:hover {
       border-color: var(--blue);
+      transform: translateY(-6px);
     }
 
-    /* ---------- 3D ---------- */
-    .image-grid img {
+    iframe {
       width: 100%;
-      border: 1px solid var(--border);
-      transition: 0.3s;
+      aspect-ratio: 16 / 9;
+      border: none;
     }
 
-    .image-grid img:hover {
-      border-color: var(--blue);
-    }
-
-    /* ---------- CONTACT ---------- */
-    .contact a {
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .contact a:hover {
-      color: var(--blue);
-    }
-
-    /* ---------- RESUME ---------- */
-    .resume-btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border: 1px solid var(--blue);
+    a {
       color: var(--blue);
       text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .resume-btn:hover {
-      background: var(--blue);
-      color: #000;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO / MASTER SHOWREEL -->
-  <section class="hero">
-    <h1>Sabari Works</h1>
-    <div class="showreel">
-      <!-- Replace src with your actual showreel file -->
-      <video src="/showreel.mp4" controls width="100%"></video>
-    </div>
-  </section>
+<!-- HERO / SHOWREEL -->
+<section>
+  <h1>Sabari Works</h1>
+  <iframe
+    src="https://www.youtube.com/embed/x7VlLZrcX7Y"
+    allowfullscreen>
+  </iframe>
+</section>
 
-  <!-- CLIENT WORK -->
-  <section>
-    <h2>Client Work</h2>
-    <div class="grid">
-      <div class="card">Project 01</div>
-      <div class="card">Project 02</div>
-      <div class="card">Project 03</div>
-    </div>
-  </section>
+<!-- WORK CATEGORIES -->
+<section>
+  <h2>Work</h2>
+  <div class="grid">
 
-  <!-- MOTION GRAPHICS -->
-  <section>
-    <h2>Motion Graphics</h2>
-    <div class="grid">
-      <div class="card">Motion 01</div>
-      <div class="card">Motion 02</div>
-    </div>
-  </section>
+    <a href="/client-work" class="card">Client Works</a>
+    <a href="/motion-graphics" class="card">Motion Graphics</a>
+    <a href="/vfx" class="card">VFX</a>
+    <a href="/color-correction" class="card">Color Correction</a>
+    <a href="/3d-modelling" class="card">3D Modelling</a>
 
-  <!-- VFX -->
-  <section>
-    <h2>VFX</h2>
-    <div class="grid">
-      <div class="card">VFX Shot 01</div>
-      <div class="card">VFX Shot 02</div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- COLOR CORRECTION -->
-  <section>
-    <h2>Color Correction</h2>
-    <div class="grid">
-      <div class="card">Before / After 01</div>
-      <div class="card">Before / After 02</div>
-    </div>
-  </section>
+<!-- RESUME -->
+<section>
+  <h2>Resume</h2>
+  <a href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7">
+    Download Resume
+  </a>
+</section>
 
-  <!-- 3D MODELLING -->
-  <section>
-    <h2>3D Modelling</h2>
-    <div class="grid image-grid">
-      <img src="/render1.jpg" alt="3D Render 1" />
-      <img src="/render2.jpg" alt="3D Render 2" />
-      <img src="/render3.jpg" alt="3D Render 3" />
-      <img src="/render4.jpg" alt="3D Render 4" />
-      <img src="/render5.jpg" alt="3D Render 5" />
-      <img src="/render6.jpg" alt="3D Render 6" />
-      <img src="/render7.jpg" alt="3D Render 7" />
-      <img src="/render8.jpg" alt="3D Render 8" />
-      <img src="/render9.jpg" alt="3D Render 9" />
-      <img src="/render10.jpg" alt="3D Render 10" />
-    </div>
-  </section>
-
-  <!-- RESUME DOWNLOAD -->
-  <section>
-    <h2>Resume</h2>
-    <a href="/resume.pdf" download class="resume-btn">
-      Download Resume
+<!-- CONTACT -->
+<section>
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:sabari1132006@gmail.com">sabari1132006@gmail.com</a></p>
+  <p>Phone: <a href="tel:+919367778466">+91 93677 78466</a></p>
+  <p>
+    LinkedIn:
+    <a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
+      sabari-jc
     </a>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact">
-    <h2>Contact</h2>
-    <a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a>
-    <a href="mailto:yourmail@email.com">yourmail@email.com</a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">
-      LinkedIn
-    </a>
-  </section>
+  </p>
+</section>
 
 </body>
 </html>
