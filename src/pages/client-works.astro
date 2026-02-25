@@ -1,90 +1,121 @@
 ---
-const pageTitle = "Client Works";
+const title = "Client Works | Sabari Works";
 ---
+
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{pageTitle} | Sabari Works</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Mono&display=swap');
+  <title>{title}</title>
 
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Inter', sans-serif;
-            background-image: radial-gradient(circle at 2px 2px, #111 1px, transparent 0);
-            background-size: 40px 40px;
-        }
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --blue: #1e90ff;
+      --text: #e6e6e6;
+      --border: #1f2a36;
+    }
 
-        .neo-card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-        .neo-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.2);
-            transform: translateY(-5px);
-        }
+    header {
+      padding: 60px 10%;
+    }
 
-        .blue-glow {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            pointer-events: none;
-        }
+    section {
+      padding: 40px 10% 80px;
+    }
 
-        .neo-card:hover .blue-glow {
-            opacity: 1;
-        }
+    h1 {
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
 
-        .status-dot {
-            height: 8px;
-            width: 8px;
-            background-color: #2563eb;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #2563eb;
-        }
-    </style>
+    p {
+      opacity: 0.8;
+      max-width: 600px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: none;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body class="p-4 md:p-10">
-    
-    <nav class="flex justify-between items-center max-w-7xl mx-auto mb-20">
-        <div class="flex items-center gap-2">
-            <div class="status-dot"></div>
-            <span class="font-mono text-xs uppercase tracking-[0.4em] text-blue-500">System Active</span>
-        </div>
-        <a href="/" class="group flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-all">
-            <span class="group-hover:-translate-x-1 transition-transform">←</span> Return_Home
-        </a>
-    </nav>
 
-    <main class="max-w-7xl mx-auto">
-        <div class="mb-24">
-            <h1 class="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-none mb-6">
-                CLIENT<br/><span class="text-blue-600">PRODUCTION</span>
-            </h1>
-            <div class="flex flex-wrap gap-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
-                <span class="border border-gray-800 px-3 py-1">Type: Commercial</span>
-                <span class="border border-gray-800 px-3 py-1">Qty: 07 Units</span>
-                <span class="border border-gray-800 px-3 py-1">Status: Delivered</span>
-            </div>
-        </div>
+<body>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            
-            <div class="md:col-span-8 neo-card rounded-sm p-4">
-                <div class="blue-glow"></div>
-                <div class="aspect-video bg-black mb-6">
-                    <iframe class="w-full h-full" src="
+<header>
+  <h1>Client Works</h1>
+  <p>
+    Selected client projects focused on clean edits, strong pacing,
+    and platform-ready storytelling.
+  </p>
+  <a class="back" href="/">← Back to Home</a>
+</header>
+
+<section>
+  <div class="grid">
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/e50q35cDChw"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/LLNj1s4T8Dg"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/qomMmZ8wyOc"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/DvWhsELYp_4"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/Z1gQcLdh9iM"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/1UM5r-VKHV0"></iframe>
+    </div>
+
+    <div class="card">
+      <iframe src="https://www.youtube.com/embed/f8mYfRMoSB8"></iframe>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
