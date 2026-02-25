@@ -12,15 +12,13 @@ const renders = Array.from({ length: 10 }, (_, i) => `/render${i + 1}.jpg`);
   <div class="grid">
     {renders.map((img) => (
       <div class="card">
-        <img src={img} onclick="openImage(this.src)" />
+        <a href={img} target="_blank" rel="noopener noreferrer">
+          <img src={img} alt="3D Render" />
+        </a>
       </div>
     ))}
   </div>
 </section>
-
-<div id="viewer" onclick="closeImage()">
-  <img id="viewer-img" />
-</div>
 
 <style>
 .container{
@@ -48,43 +46,14 @@ const renders = Array.from({ length: 10 }, (_, i) => `/render${i + 1}.jpg`);
 
 .card img{
   width:100%;
+  display:block;
   cursor:pointer;
-  transition:0.3s;
+  transition:transform 0.3s ease;
 }
 
 .card img:hover{
   transform:scale(1.05);
 }
-
-#viewer{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-}
-
-#viewer img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:10px;
-}
 </style>
-
-<script>
-function openImage(src){
-  const viewer = document.getElementById("viewer");
-  const img = document.getElementById("viewer-img");
-
-  img.src = src;
-  viewer.style.display = "flex";
-}
-
-function closeImage(){
-  document.getElementById("viewer").style.display = "none";
-}
-</script>
 
 </Layout>
