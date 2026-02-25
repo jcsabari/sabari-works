@@ -1,154 +1,90 @@
 ---
-const title = "3D Modelling | Sabari Works";
+import Layout from "../layouts/Layout.astro";
+
+const renders = Array.from({ length: 10 }, (_, i) => `/render${i + 1}.jpg`);
 ---
 
-<html lang="en">
-<head>
-  <title>{title}</title>
+<Layout title="3D Modeling">
 
-  <style>
-    :root {
-      --bg: #0b0f14;
-      --blue: #1e90ff;
-      --text: #e6e6e6;
-      --border: #1f2a36;
-    }
+<section class="container">
+  <h1 class="title">3D Modeling</h1>
 
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    header {
-      padding: 60px 10% 20px;
-    }
-
-    section {
-      padding: 20px 10% 80px;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    p {
-      opacity: 0.8;
-      max-width: 650px;
-    }
-
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      background: #0f141a;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      border-color: var(--blue);
-      transform: translateY(-6px);
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-    }
-
-    /* Lightbox */
-    #lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 999;
-    }
-
-    #lightbox.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 6px;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>3D Modelling</h1>
-  <p>
-    A selection of 3D models focused on form, clean topology,
-    and studio-style presentation.
-  </p>
-  <a href="/" class="back">← Back to Home</a>
-</header>
-
-<section>
   <div class="grid">
-    <div class="card"><img src="/render1.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render2.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render3.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render4.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render5.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render6.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render7.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render8.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render9.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
-    <div class="card"><img src="/render10.jpg" onclick="openLightbox(this.src)" alt="3D render"></div>
+    {renders.map((img) => (
+      <div class="card">
+        <img src={img} onclick="openImage(this.src)" />
+      </div>
+    ))}
   </div>
 </section>
 
-<!-- Lightbox -->
-<div id="lightbox">
-  <img id="lightbox-img" src="" alt="Preview">
+<div id="viewer" onclick="closeImage()">
+  <img id="viewer-img" />
 </div>
 
+<style>
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+.title{
+  text-align:center;
+  font-size:32px;
+  margin-bottom:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  overflow:hidden;
+  border-radius:12px;
+}
+
+.card img{
+  width:100%;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card img:hover{
+  transform:scale(1.05);
+}
+
+#viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+#viewer img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+</style>
+
 <script>
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
+function openImage(src){
+  const viewer = document.getElementById("viewer");
+  const img = document.getElementById("viewer-img");
 
-  function openLightbox(src) {
-    lightboxImg.src = src;
-    lightbox.classList.add("active");
-  }
+  img.src = src;
+  viewer.style.display = "flex";
+}
 
-  lightbox.addEventListener("click", () => {
-    lightbox.classList.remove("active");
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      lightbox.classList.remove("active");
-    }
-  });
+function closeImage(){
+  document.getElementById("viewer").style.display = "none";
+}
 </script>
 
-</body>
-</html>
+</Layout>
