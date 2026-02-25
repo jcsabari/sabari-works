@@ -1,17 +1,112 @@
 ---
-const images = ["1cKr6_itlPXbfVnvbsGu4USnwj48LpJIs", "1Tx1KVUbUAWwid58fHlu5ZP_NmvV3RZNa", "1Y5FlUbKRYbjB-cRXBY_tZ_BAlYhfdkVY", "11890jiP7hPEsYVkoDl5m82vEWGko8IXL", "1O80HKxeekN_KeLGOXomPAt61himquYlD", "19FV-H4E0U-nO5Ua8uV2y-pEeDjdA_j8l", "1H6bAYCFI14Zuv4DyoiCZggY5YF_NUzyi", "1zT7zjCw6HryCz1bPVyCivpCA4e4o7aLh", "1OqHSKznL9MGOquWGiARmyHHwoGijc383", "18LFN55-kerQeHvP3kdQzcBZHhJdR_hce"];
+const title = "3D Modelling | Sabari Works";
 ---
-<html lang="en" class="bg-[#050505] text-white">
-    <head><script src="https://cdn.tailwindcss.com"></script></head>
-    <body class="p-10">
-        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-widest">← Back to Hub</a>
-        <h1 class="text-6xl font-black uppercase italic mt-10 mb-20">3D <span class="text-blue-600">Modelling</span></h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {images.map(id => (
-                <div class="rounded-3xl overflow-hidden border border-white/10 group">
-                    <img src={`https://drive.google.com/uc?id=${id}`} class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700" />
-                </div>
-            ))}
-        </div>
-    </body>
+
+<html lang="en">
+<head>
+  <title>{title}</title>
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --blue: #1e90ff;
+      --text: #e6e6e6;
+      --border: #1f2a36;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 60px 10% 20px;
+    }
+
+    section {
+      padding: 20px 10% 80px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      opacity: 0.8;
+      max-width: 650px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: 0.3s ease;
+      background: #0f141a;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .label {
+      padding: 12px;
+      font-size: 13px;
+      opacity: 0.85;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>3D Modelling</h1>
+  <p>
+    Selected 3D models focused on form, proportions, and clean topology,
+    presented through studio-style renders.
+  </p>
+  <a href="/" class="back">← Back to Home</a>
+</header>
+
+<section>
+  <div class="grid">
+
+    <div class="card"><img src="/render1.jpg" alt="Render 01"><div class="label">Render 01</div></div>
+    <div class="card"><img src="/render2.jpg" alt="Render 02"><div class="label">Render 02</div></div>
+    <div class="card"><img src="/render3.jpg" alt="Render 03"><div class="label">Render 03</div></div>
+    <div class="card"><img src="/render4.jpg" alt="Render 04"><div class="label">Render 04</div></div>
+    <div class="card"><img src="/render5.jpg" alt="Render 05"><div class="label">Render 05</div></div>
+    <div class="card"><img src="/render6.jpg" alt="Render 06"><div class="label">Render 06</div></div>
+    <div class="card"><img src="/render7.jpg" alt="Render 07"><div class="label">Render 07</div></div>
+    <div class="card"><img src="/render8.jpg" alt="Render 08"><div class="label">Render 08</div></div>
+    <div class="card"><img src="/render9.jpg" alt="Render 09"><div class="label">Render 09</div></div>
+    <div class="card"><img src="/render10.jpg" alt="Render 10"><div class="label">Render 10</div></div>
+
+  </div>
+</section>
+
+</body>
 </html>
