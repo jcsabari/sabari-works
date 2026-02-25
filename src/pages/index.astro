@@ -86,26 +86,122 @@ const title = "Sabari Works";
   </div>
 </section>
 
-<!-- RESUME -->
-<section>
-  <h2>Resume</h2>
-  <a href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7">
-    Download Resume
-  </a>
-</section>
+<section id="contact" class="contact-section">
 
-<!-- CONTACT -->
-<section>
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:sabari1132006@gmail.com">sabari1132006@gmail.com</a></p>
-  <p>Phone: <a href="tel:+919367778466">+91 93677 78466</a></p>
-  <p>
-    LinkedIn:
-    <a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
-      sabari-jc
+  <h2 class="section-title">Contact</h2>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <h3>Email</h3>
+      <a href="mailto:sabari1132006@gmail.com">
+        sabari1132006@gmail.com
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <h3>Phone</h3>
+      <a href="tel:+919367778466">
+        +91 9367778466
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <h3>LinkedIn</h3>
+      <a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
+        sabari-jc-357007369
+      </a>
+    </div>
+
+  </div>
+
+  <div class="resume-box">
+    <h2>Resume</h2>
+
+    <p>Download my latest resume to see my skills and experience.</p>
+
+    <a href="/sabari_resume.pdf" class="resume-btn" target="_blank">
+      View Resume
     </a>
-  </p>
+
+    <a href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7"
+       class="resume-btn download"
+       target="_blank">
+      Download Resume
+    </a>
+
+  </div>
+
 </section>
 
-</body>
-</html>
+<style>
+
+.contact-section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section-title{
+  font-size:34px;
+  margin-bottom:40px;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:auto;
+  margin-bottom:60px;
+}
+
+.contact-card{
+  background:#1e293b;
+  padding:30px;
+  border-radius:14px;
+  transition:0.3s;
+}
+
+.contact-card:hover{
+  transform:translateY(-6px);
+  background:#334155;
+}
+
+.contact-card h3{
+  margin-bottom:10px;
+}
+
+.contact-card a{
+  color:#38bdf8;
+  text-decoration:none;
+}
+
+.resume-box{
+  max-width:600px;
+  margin:auto;
+  background:#1e293b;
+  padding:40px;
+  border-radius:16px;
+}
+
+.resume-btn{
+  display:inline-block;
+  margin:10px;
+  padding:12px 28px;
+  border-radius:8px;
+  background:#38bdf8;
+  color:black;
+  font-weight:600;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.resume-btn:hover{
+  transform:translateY(-3px);
+}
+
+.download{
+  background:#22c55e;
+}
+
+</style>
