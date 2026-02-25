@@ -1,17 +1,109 @@
 ---
-const videos = ["WrFH0C8b2Vs", "B1L4l9uIiyg"];
+const title = "VFX | Sabari Works";
 ---
-<html lang="en" class="bg-[#050505] text-white">
-	<head><script src="https://cdn.tailwindcss.com"></script></head>
-	<body class="p-10">
-		<a href="/" class="text-blue-500 font-mono text-xs tracking-widest uppercase">← Back</a>
-		<h1 class="text-6xl font-black uppercase italic mt-10 mb-20">VFX <span class="text-blue-600">Engine</span></h1>
-		<div class="space-y-12 max-w-5xl mx-auto">
-			{videos.map(id => (
-				<div class="aspect-video rounded-3xl overflow-hidden border border-white/10">
-					<iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
-				</div>
-			))}
-		</div>
-	</body>
+
+<html lang="en">
+<head>
+  <title>{title}</title>
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --blue: #1e90ff;
+      --text: #e6e6e6;
+      --border: #1f2a36;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 60px 10% 20px;
+    }
+
+    section {
+      padding: 20px 10% 80px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      opacity: 0.8;
+      max-width: 600px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>VFX</h1>
+  <p>
+    Visual effects focused on clean compositing, seamless integration,
+    and believable enhancements that support the story.
+  </p>
+  <a href="/" class="back">← Back to Home</a>
+</header>
+
+<section>
+  <div class="grid">
+
+    <div class="card">
+      <iframe
+        src="https://www.youtube.com/embed/WrFH0C8b2Vs"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="card">
+      <iframe
+        src="https://www.youtube.com/embed/B1L4l9uIiyg"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+</body>
 </html>
