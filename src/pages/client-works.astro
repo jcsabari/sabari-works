@@ -1,92 +1,33 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const videos = [
-  {
-    id: "e50q35cDChw",
-    title: "Client Work 1"
-  },
-  {
-    id: "LLNj1s4T8Dg",
-    title: "Client Work 2"
-  },
-  {
-    id: "qomMmZ8wyOc",
-    title: "Client Work 3"
-  },
-  {
-    id: "DvWhsELYp_4",
-    title: "Client Work 4"
-  },
-  {
-    id: "Z1gQcLdh9iM",
-    title: "Client Work 5"
-  },
-  {
-    id: "1UM5r-VKHV0",
-    title: "Client Work 6"
-  },
-  {
-    id: "f8mYfRMoSB8",
-    title: "Client Work 7"
-  }
+  "e50q35cDChw",
+  "LLNj1s4T8Dg",
+  "qomMmZ8wyOc",
+  "DvWhsELYp_4",
+  "Z1gQcLdh9iM",
+  "1UM5r-VKHV0",
+  "f8mYfRMoSB8"
 ];
 ---
 
-<Layout title="Client Works">
+<BaseLayout title="Client Work">
+  <header>
+    <h1>Client Work</h1>
+    <p>Professional edits created for digital platforms</p>
+  </header>
 
-<section class="container">
-  <h1 class="title">Client Works</h1>
-
-  <div class="grid">
-    {videos.map((video) => (
-      <div class="card">
+  <section class="grid">
+    {videos.map(id => (
+      <div class="card" style="padding:0;">
         <iframe
-          src={`https://www.youtube.com/embed/${video.id}`}
-          title={video.title}
-          frameborder="0"
+          src={`https://www.youtube.com/embed/${id}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
+          style="width:100%; aspect-ratio:9/16; border-radius:8px; border:none;"
         ></iframe>
       </div>
     ))}
-  </div>
-</section>
-
-<style>
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:40px 20px;
-}
-
-.title{
-  text-align:center;
-  font-size:32px;
-  margin-bottom:40px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:var(--card-bg);
-  padding:10px;
-  border-radius:12px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-}
-
-iframe{
-  width:100%;
-  height:500px;
-  border-radius:10px;
-}
-</style>
-
-</Layout>
+  </section>
+</BaseLayout>
