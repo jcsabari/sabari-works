@@ -1,5 +1,4 @@
 ---
-// Frontmatter - Keep this area clean to avoid build errors
 const pageTitle = "Client Works";
 ---
 <html lang="en">
@@ -9,86 +8,83 @@ const pageTitle = "Client Works";
     <title>{pageTitle} | Sabari Works</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Black and Blue Theme */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=Space+Mono&display=swap');
+
         body { 
-            background-color: #050505; 
-            color: white; 
-            margin: 0; 
-            font-family: 'Segoe UI', sans-serif; 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at 2px 2px, #111 1px, transparent 0);
+            background-size: 40px 40px;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.4s ease;
+
+        .neo-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .glass-card:hover { 
-            border-color: #2563eb; 
-            background: rgba(37, 99, 235, 0.05); 
+
+        .neo-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.2);
             transform: translateY(-5px);
+        }
+
+        .blue-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .neo-card:hover .blue-glow {
+            opacity: 1;
+        }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #2563eb;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #2563eb;
         }
     </style>
 </head>
-<body class="selection:bg-blue-600">
-    <div class="max-w-7xl mx-auto py-16 px-6">
-        
-        <a href="/" class="text-blue-500 hover:text-white transition-colors tracking-[0.3em] uppercase text-xs font-mono mb-8 inline-block">
-            ← Back to Portfolio
+<body class="p-4 md:p-10">
+    
+    <nav class="flex justify-between items-center max-w-7xl mx-auto mb-20">
+        <div class="flex items-center gap-2">
+            <div class="status-dot"></div>
+            <span class="font-mono text-xs uppercase tracking-[0.4em] text-blue-500">System Active</span>
+        </div>
+        <a href="/" class="group flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-all">
+            <span class="group-hover:-translate-x-1 transition-transform">←</span> Return_Home
         </a>
+    </nav>
 
-        <header class="mb-16">
-            <h1 class="text-6xl md:text-8xl font-black italic uppercase leading-none">
-                Client <span class="text-blue-600">Works</span>
+    <main class="max-w-7xl mx-auto">
+        <div class="mb-24">
+            <h1 class="text-7xl md:text-9xl font-black italic uppercase tracking-tighter leading-none mb-6">
+                CLIENT<br/><span class="text-blue-600">PRODUCTION</span>
             </h1>
-            <p class="text-gray-500 font-mono mt-4 tracking-widest uppercase">7 Projects // Social Edits & Commercials</p>
-        </header>
+            <div class="flex flex-wrap gap-4 font-mono text-[10px] uppercase tracking-widest text-gray-500">
+                <span class="border border-gray-800 px-3 py-1">Type: Commercial</span>
+                <span class="border border-gray-800 px-3 py-1">Qty: 07 Units</span>
+                <span class="border border-gray-800 px-3 py-1">Status: Delivered</span>
+            </div>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
             
-            <div class="glass-card p-6 rounded-3xl">
-                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-6">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/x7VlLZrcX7Y" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold italic uppercase">Social Media Edit</h3>
-                        <p class="text-blue-500 font-mono text-xs mt-1 uppercase">Instagram Reels // Motion</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-6 rounded-3xl">
-                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-6">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/x7VlLZrcX7Y" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold italic uppercase">Brand Commercial</h3>
-                        <p class="text-blue-500 font-mono text-xs mt-1 uppercase">Color Grading // Ad</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-6 rounded-3xl">
-                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-6">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/x7VlLZrcX7Y" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold italic uppercase">YouTube Intro</h3>
-                        <p class="text-blue-500 font-mono text-xs mt-1 uppercase">VFX // 2D Animation</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="mt-20 text-center">
-            <p class="text-gray-600 font-mono text-sm mb-4">WANT TO START A PROJECT?</p>
-            <a href="mailto:sabari1132006@gmail.com" class="text-blue-600 font-black italic text-2xl hover:text-white transition-colors">SABARI1132006@GMAIL.COM ↗</a>
-        </div>
-
-    </div>
-</body>
-</html>
+            <div class="md:col-span-8 neo-card rounded-sm p-4">
+                <div class="blue-glow"></div>
+                <div class="aspect-video bg-black mb-6">
+                    <iframe class="w-full h-full" src="
