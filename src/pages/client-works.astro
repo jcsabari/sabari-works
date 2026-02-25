@@ -1,17 +1,53 @@
 ---
 const shorts = ["e50q35cDChw", "LLNj1s4T8Dg", "qomMmZ8wyOc", "DvWhsELYp_4", "Z1gQcLdh9iM", "1UM5r-VKHV0", "f8mYfRMoSB8"];
 ---
-<html lang="en" class="bg-[#050505] text-white">
-    <head><script src="https://cdn.tailwindcss.com"></script></head>
-    <body class="p-10">
-        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-widest">← Back</a>
-        <h1 class="text-6xl font-black uppercase italic mt-10 mb-20">Client <span class="text-blue-600">Edits</span></h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {shorts.map(id => (
-                <div class="aspect-[9/16] rounded-2xl overflow-hidden border border-white/10">
-                    <iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle} | Sabari Works</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: white; margin: 0; font-family: sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: 0.4s ease;
+        }
+        .glass-card:hover { border-color: #2563eb; background: rgba(37, 99, 235, 0.05); }
+    </style>
+</head>
+<body class="selection:bg-blue-600">
+    <div class="max-w-7xl mx-auto py-12 px-6">
+        
+        <a href="/" class="text-blue-500 hover:text-white transition-colors tracking-widest uppercase text-xs font-mono mb-8 inline-block">
+            ← Back to Hub
+        </a>
+
+        <h1 class="text-5xl md:text-8xl font-black italic uppercase mb-16">
+            {pageTitle} <span class="text-blue-600">Projects</span>
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-6">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
                 </div>
-            ))}
+                <h3 class="text-2xl font-bold italic uppercase">Project Alpha</h3>
+                <p class="text-gray-500 font-mono text-sm mt-2">After Effects // Element 3D</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="aspect-video w-full rounded-2xl overflow-hidden bg-black mb-6">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h3 class="text-2xl font-bold italic uppercase">Project Beta</h3>
+                <p class="text-gray-500 font-mono text-sm mt-2">VFX Compositing // Nuke</p>
+            </div>
+
         </div>
-    </body>
+    </div>
+</body>
 </html>
