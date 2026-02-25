@@ -1,36 +1,123 @@
 ---
-// Video IDs for Motion Graphics
-const mainVideo = "H7f4mMpvh8k";
-const shorts = ["6uU8PRqiTQE", "dOW5-9EqCOU"];
+const title = "Motion Graphics | Sabari Works";
 ---
-<html lang="en" class="bg-[#050505] text-white">
-    <head>
-        <title>Motion Graphics | Sabari Works</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="p-8 md:p-20">
-        <a href="/" class="text-blue-500 font-mono text-xs uppercase tracking-[0.4em] hover:text-white transition-colors">← Back to Hub</a>
-        
-        <h1 class="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mt-10 mb-16">
-            Motion <span class="text-blue-600">Graphics</span>
-        </h1>
 
-        <div class="mb-12">
-            <h2 class="text-blue-500 font-mono text-[10px] uppercase tracking-widest mb-4">Featured Project</h2>
-            <div class="aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-blue-900/20">
-                <iframe src={`https://www.youtube.com/embed/${mainVideo}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
+<html lang="en">
+<head>
+  <title>{title}</title>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
-            {shorts.map(id => (
-                <div>
-                    <h2 class="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-4">Short / Loop</h2>
-                    <div class="aspect-[9/16] rounded-3xl overflow-hidden border border-white/10">
-                        <iframe src={`https://www.youtube.com/embed/${id}`} class="w-full h-full" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </body>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --blue: #1e90ff;
+      --text: #e6e6e6;
+      --border: #1f2a36;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 60px 10% 20px;
+    }
+
+    section {
+      padding: 20px 10% 80px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      opacity: 0.8;
+      max-width: 600px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--blue);
+      transform: translateY(-6px);
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      display: block;
+    }
+
+    /* Shorts support */
+    .short iframe {
+      aspect-ratio: 9 / 16;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Motion Graphics</h1>
+  <p>
+    Motion-driven visuals designed for clarity, rhythm, and impact —
+    from explainer-style graphics to social-first animations.
+  </p>
+  <a href="/" class="back">← Back to Home</a>
+</header>
+
+<section>
+  <div class="grid">
+
+    <!-- Full video -->
+    <div class="card">
+      <iframe
+        src="https://www.youtube.com/embed/H7f4mMpvh8k"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Shorts -->
+    <div class="card short">
+      <iframe
+        src="https://www.youtube.com/embed/6uU8PRqiTQE"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="card short">
+      <iframe
+        src="https://www.youtube.com/embed/dOW5-9EqCOU"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+</body>
 </html>
