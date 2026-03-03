@@ -193,33 +193,122 @@ const { title = "Sabari Works" } = Astro.props;
     [data-theme="dark"] .icon-sun { display: block; }
     [data-theme="dark"] .icon-moon { display: none; }
 
-    /* mobile nav */
-    .nav-mobile {
+    /* mobile nav drawer */
+    .nav-backdrop {
       display: none;
       position: fixed;
-      top: var(--nav-h); left: 0; right: 0;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 6% 24px;
-      z-index: 99;
-      flex-direction: column;
-      gap: 4px;
-      box-shadow: var(--shadow-md);
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 98;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
     }
-    .nav-mobile.open { display: flex; }
-    .nav-mobile a {
+    .nav-backdrop.open { display: block; }
+
+    .nav-mobile {
+      position: fixed;
+      top: 0; right: -100%;
+      width: min(280px, 82vw);
+      height: 100dvh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      padding: 0;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      transition: right 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .nav-mobile.open { right: 0; }
+
+    .nav-mobile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .nav-mobile-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .nav-mobile-logo span { color: var(--accent); }
+    .nav-mobile-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nav-mobile-close:hover { color: var(--text); background: var(--border); }
+
+    .nav-mobile-links {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 12px;
+      flex: 1;
+      gap: 2px;
+    }
+    .nav-mobile-links a {
+      display: flex;
+      align-items: center;
       font-size: 15px;
       font-weight: 500;
       color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      min-height: 48px;
+      transition: color 0.2s, background 0.2s;
     }
-    .nav-mobile a:hover { color: var(--text); background: var(--surface-alt); }
+    .nav-mobile-links a:hover,
+    .nav-mobile-links a:active { color: var(--text); background: var(--surface-alt); }
+    .nav-mobile-links a.active { color: var(--accent); font-weight: 600; background: rgba(14,165,233,0.08); }
+    .nav-mobile-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 14px 16px 6px;
+      margin-top: 4px;
+    }
+    .nav-mobile-sub a {
+      padding-left: 28px;
+      font-size: 14px;
+    }
+    .nav-mobile-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 8px 16px;
+    }
+
+/* hamburger → X animation */
+    .nav-hamburger span:nth-child(1) { transform-origin: center; }
+    .nav-hamburger span:nth-child(2) { transform-origin: center; }
+    .nav-hamburger span:nth-child(3) { transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .nav-right { gap: 4px; }
+      section { padding: 48px 5%; }
+      .page-header { padding: 56px 5% 44px; }
+      .footer-main { padding: 40px 5% 32px; }
+      .footer-bottom { padding: 14px 5%; }
     }
 
     /* PAGE BODY */
@@ -501,17 +590,32 @@ const { title = "Sabari Works" } = Astro.props;
     </div>
   </nav>
 
-  <!-- MOBILE NAV -->
+  <!-- MOBILE BACKDROP -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- MOBILE NAV DRAWER -->
   <div class="nav-mobile" id="nav-mobile">
-    <a href="/">Home</a>
-    <a href="/works">Works</a>
-    <a href="/client-work" style="padding-left:28px; font-size:13px;">Client Works</a>
-    <a href="/motion-graphics" style="padding-left:28px; font-size:13px;">Motion Graphics</a>
-    <a href="/vfx" style="padding-left:28px; font-size:13px;">VFX</a>
-    <a href="/color-correction" style="padding-left:28px; font-size:13px;">Color Correction</a>
-    <a href="/3d-modelling" style="padding-left:28px; font-size:13px;">3D Modelling</a>
-    <a href="/skills">Skills</a>
-    <a href="/contact">Contact</a>
+    <div class="nav-mobile-header">
+      <span class="nav-mobile-logo">Sabari<span>.</span></span>
+      <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="nav-mobile-links">
+      <a href="/">Home</a>
+      <a href="/skills">Skills</a>
+      <a href="/contact">Contact</a>
+      <div class="nav-mobile-divider"></div>
+      <span class="nav-mobile-section-label">Portfolio</span>
+      <a href="/works">All Works</a>
+      <div class="nav-mobile-sub">
+        <a href="/client-work">Client Works</a>
+        <a href="/motion-graphics">Motion Graphics</a>
+        <a href="/vfx">VFX</a>
+        <a href="/color-correction">Color Correction</a>
+        <a href="/3d-modelling">3D Modelling</a>
+      </div>
+    </div>
   </div>
 
   <div class="page-body">
@@ -570,28 +674,50 @@ const { title = "Sabari Works" } = Astro.props;
       nav?.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    const toggle = document.getElementById('nav-toggle');
+    // Mobile nav open/close
+    const hamburger = document.getElementById('nav-toggle');
     const mobileNav = document.getElementById('nav-mobile');
-    toggle?.addEventListener('click', () => {
-      mobileNav?.classList.toggle('open');
+    const backdrop  = document.getElementById('nav-backdrop');
+    const closeBtn  = document.getElementById('nav-close');
+
+    function openMenu() {
+      mobileNav?.classList.add('open');
+      backdrop?.classList.add('open');
+      hamburger?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileNav?.classList.remove('open');
+      backdrop?.classList.remove('open');
+      hamburger?.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger?.addEventListener('click', () => {
+      mobileNav?.classList.contains('open') ? closeMenu() : openMenu();
     });
+    backdrop?.addEventListener('click', closeMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+
+    // Close on any link click inside drawer
+    mobileNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
     // Active nav link
     const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav-links a, .nav-mobile a').forEach(link => {
+    document.querySelectorAll('.nav-links a, .nav-mobile-links a').forEach(link => {
       const href = link.getAttribute('href');
       if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
         link.classList.add('active');
       }
     });
 
-    // Dark mode
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle?.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
+    // Dark mode toggle (both desktop & mobile)
+    function applyTheme(next) {
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+    }
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
     // Scroll reveal
