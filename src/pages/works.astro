@@ -1,0 +1,231 @@
+﻿---
+import Layout from "../layouts/Layout.astro";
+import SiteIcon from "../components/SiteIcon.tsx";
+
+const categories = [
+  {
+    href: "/client-work",
+    iconKey: "video",
+    title: "Client Works",
+    desc: "Promotional videos and branded content delivered for real-world clients across various industries.",
+    count: "7 projects",
+    tag: "Commercial"
+  },
+  {
+    href: "/motion-graphics",
+    iconKey: "motion",
+    title: "Motion Graphics",
+    desc: "Animated visuals designed for clarity, rhythm, and social-first impact  from explainers to shorts.",
+    count: "3 projects",
+    tag: "Animation"
+  },
+  {
+    href: "/vfx",
+    iconKey: "vfx",
+    title: "VFX",
+    desc: "Visual effects with clean compositing, seamless integration, and believable story-driven enhancements.",
+    count: "2 projects",
+    tag: "Visual FX"
+  },
+  {
+    href: "/color-correction",
+    iconKey: "color",
+    title: "Color Correction",
+    desc: "Precision grading focused on balance, consistency, and cinematic mood without overpowering the story.",
+    count: "2 projects",
+    tag: "Post-Production"
+  },
+  {
+    href: "/3d-modelling",
+    iconKey: "threed",
+    title: "3D Modelling",
+    desc: "Rendered 3D assets and scenes crafted with attention to detail, lighting, and spatial composition.",
+    count: "10 renders",
+    tag: "3D"
+  }
+];
+---
+
+<Layout title="Works | Sabari Works">
+<style>
+  .works-hero {
+    padding: 80px 8% 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .works-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -80px;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .works-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 6%;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .works-hero h1 { margin-bottom: 16px; }
+  .works-hero h1 em { font-style: normal; color: var(--accent); }
+  .works-hero > p { max-width: 560px; font-size: 16px; line-height: 1.75; margin-bottom: 32px; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .hero-chip strong { color: var(--text); font-weight: 700; font-size: 14px; }
+
+  .categories-section { padding: 60px 8%; }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .cat-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 0 3px rgba(14,165,233,0.07);
+  }
+
+  .cat-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .cat-icon {
+    font-size: 32px;
+    line-height: 1;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--accent);
+  }
+  .cat-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.18);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .cat-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .cat-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    flex: 1;
+    margin-bottom: 24px;
+  }
+
+  .cat-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .cat-count {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .cat-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    transition: gap 0.2s;
+  }
+  .cat-card:hover .cat-arrow { gap: 10px; }
+</style>
+
+<div class="works-hero">
+  <div class="hero-eyebrow">Portfolio</div>
+  <h1>Works &amp; <em>Projects</em></h1>
+  <p>A collection of video editing, motion design, VFX, color grading, and 3D work across commercial and creative projects.</p>
+  <div class="hero-chips">
+    <span class="hero-chip"><strong>5</strong> Categories</span>
+    <span class="hero-chip"><strong>20+</strong> Projects</span>
+    <span class="hero-chip"><strong>3+</strong> Years of Work</span>
+  </div>
+</div>
+
+<section class="categories-section">
+  <div class="cat-grid reveal-group">
+    {categories.map((cat) => (
+      <a href={cat.href} class="cat-card">
+        <div class="cat-top">
+          <div class="cat-icon"><SiteIcon name={cat.iconKey} size={26} /></div>
+          <span class="cat-tag">{cat.tag}</span>
+        </div>
+        <h2>{cat.title}</h2>
+        <p>{cat.desc}</p>
+        <div class="cat-footer">
+          <span class="cat-count">{cat.count}</span>
+          <span class="cat-arrow">View all <SiteIcon name="arrowRight" size={14} /></span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+</Layout>

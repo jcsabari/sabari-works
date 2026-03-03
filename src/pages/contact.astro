@@ -1,0 +1,257 @@
+﻿---
+import Layout from "../layouts/Layout.astro";
+import SiteIcon from "../components/SiteIcon.tsx";
+---
+
+<Layout title="Contact | Sabari Works">
+<style>
+  .contact-hero {
+    padding: 80px 8% 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(14,165,233,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: 6%;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .contact-hero h1 { margin-bottom: 16px; }
+  .contact-hero h1 em { font-style: normal; color: var(--accent); }
+  .contact-hero > p { max-width: 520px; font-size: 16px; line-height: 1.75; margin-bottom: 32px; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .hero-chip strong { color: var(--text); font-weight: 700; font-size: 14px; }
+  .hero-chip-avail { color: #16a34a; background: #f0fdf4; border-color: #bbf7d0; font-weight: 600; }
+  .hero-chip-avail::before { content: ''; display: inline-block; width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 1.8s ease infinite; }
+  @keyframes pulse { 0%, 100% { opacity:1; transform:scale(1); } 50% { opacity:0.6; transform:scale(0.85); } }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    padding: 64px 8%;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .contact-body { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* LEFT  intro text */
+  .contact-intro h2 { font-size: 26px; margin-bottom: 16px; }
+  .contact-intro p { font-size: 15px; line-height: 1.75; margin-bottom: 24px; }
+
+  .avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #16a34a;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+  }
+  .avail-badge::before { content: ''; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 1.8s ease infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .turnaround {
+    padding: 20px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .turnaround-label { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .turnaround-value { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--text); }
+
+  /* RIGHT  contact cards */
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
+  }
+  .contact-card:hover {
+    transform: translateX(6px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+  .contact-card-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .contact-card-body { flex: 1; min-width: 0; }
+  .contact-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .contact-card-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .contact-card-value:hover { text-decoration: underline; }
+  .contact-card-arrow {
+    font-size: 18px;
+    color: var(--border-strong);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .contact-card:hover .contact-card-arrow { color: var(--accent); transform: translateX(3px); }
+
+  .quick-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    box-shadow: var(--shadow-sm);
+    transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .quick-link:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+</style>
+
+<div class="contact-hero">
+  <div class="hero-eyebrow">Reach Out</div>
+  <h1>Get in <em>Touch</em></h1>
+  <p>Have a project, idea, or just want to say hi? I'd love to hear from you.</p>
+  <div class="hero-chips">
+    <span class="hero-chip hero-chip-avail">Available for freelance</span>
+    <span class="hero-chip"><strong>24hr</strong> Response time</span>
+    <span class="hero-chip">Global clients</span>
+  </div>
+</div>
+
+<div class="contact-body">
+  <div class="contact-intro reveal">
+    <div class="avail-badge">Available for freelance work</div>
+    <h2>Let's create something great together</h2>
+    <p>
+      Whether it's a promotional video, a motion graphic reel, a VFX shot, or
+      a full post-production pipeline  I'm here to help bring your vision to life.
+    </p>
+    <div class="turnaround">
+      <div class="turnaround-label">Typical response time</div>
+      <div class="turnaround-value" style="display:flex;align-items:center;gap:8px;"><SiteIcon name="clock" size={18} /> Within 24 hours</div>
+    </div>
+  </div>
+
+  <div class="contact-cards reveal-group">
+    <a href="mailto:sabari1132006@gmail.com" class="contact-card">
+      <div class="contact-card-icon"><SiteIcon name="mail" size={22} /></div>
+      <div class="contact-card-body">
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value">sabari1132006@gmail.com</div>
+      </div>
+      <span class="contact-card-arrow"><SiteIcon name="arrowRight" size={18} /></span>
+    </a>
+
+    <a href="tel:+919367778466" class="contact-card">
+      <div class="contact-card-icon"><SiteIcon name="phone" size={22} /></div>
+      <div class="contact-card-body">
+        <div class="contact-card-label">Phone</div>
+        <div class="contact-card-value">+91 93677 78466</div>
+      </div>
+      <span class="contact-card-arrow"><SiteIcon name="arrowRight" size={18} /></span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank" class="contact-card">
+      <div class="contact-card-icon"><SiteIcon name="linkedin" size={22} /></div>
+      <div class="contact-card-body">
+        <div class="contact-card-label">LinkedIn</div>
+        <div class="contact-card-value">sabari-jc-357007369</div>
+      </div>
+      <span class="contact-card-arrow"><SiteIcon name="arrowRight" size={18} /></span>
+    </a>
+
+    <div class="quick-links">
+      <a href="/works" class="quick-link"><SiteIcon name="video" size={14} /> View Works</a>
+      <a href="/sabari_resume.pdf" target="_blank" class="quick-link"><SiteIcon name="download" size={14} /> Resume</a>
+    </div>
+  </div>
+</div>
+
+
+</Layout>

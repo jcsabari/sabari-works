@@ -1,0 +1,120 @@
+---
+// Example: Astro page using Tailwind CSS classes directly
+// AND rendering a React component with interactivity via client:load
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.tsx';
+
+const projects = [
+  {
+    title: 'Client Works',
+    tag: 'Commercial',
+    description: 'Branded video content delivered for real-world clients across various industries.',
+    href: '/client-work',
+    icon: '🎬',
+  },
+  {
+    title: 'Motion Graphics',
+    tag: 'Animation',
+    description: 'Animated visuals designed for clarity, rhythm, and social-first impact.',
+    href: '/motion-graphics',
+    icon: '✦',
+  },
+  {
+    title: 'VFX',
+    tag: 'Visual FX',
+    description: 'Visual effects with clean compositing and seamless story-driven enhancements.',
+    href: '/vfx',
+    icon: '⚡',
+  },
+];
+---
+
+<Layout title="Tailwind + React Demo | Sabari Works">
+
+  <!--
+    Everything below uses plain Tailwind utility classes inside an .astro file.
+    No extra configuration needed — @tailwindcss/vite handles class detection.
+  -->
+
+  <!-- PAGE HEADER — pure Tailwind in .astro -->
+  <div class="bg-white border-b border-slate-200 px-[8%] py-16">
+    <span class="text-xs font-semibold tracking-[2px] uppercase text-sky-500 mb-3 block">
+      Setup Demo
+    </span>
+    <h1 class="font-extrabold text-4xl text-slate-900 mb-3" style="font-family:'Syne',sans-serif;">
+      Tailwind + React in Astro
+    </h1>
+    <p class="text-slate-500 text-base max-w-xl leading-relaxed">
+      This page demonstrates Tailwind CSS utility classes used directly inside
+      <code class="bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded text-sm font-mono">.astro</code>
+      files, and a React component rendered with
+      <code class="bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded text-sm font-mono">client:load</code>
+      for full interactivity.
+    </p>
+  </div>
+
+  <!-- TAILWIND IN .ASTRO — explanation callout -->
+  <div class="px-[8%] pt-12 pb-2">
+    <div class="flex gap-3 items-start bg-sky-50 border border-sky-200 rounded-xl p-5 max-w-2xl">
+      <span class="text-lg mt-0.5">ℹ️</span>
+      <div>
+        <p class="text-sm font-semibold text-sky-800 mb-1">Tailwind running in this .astro file</p>
+        <p class="text-sm text-sky-700 leading-relaxed">
+          The header above and this callout are styled with Tailwind classes
+          directly in the <code class="font-mono text-xs">.astro</code> template. 
+          No JSX, no separate CSS file needed.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REACT COMPONENTS — cards below are interactive React components -->
+  <section class="px-[8%] py-12">
+    <h2 class="font-bold text-2xl text-slate-900 mb-2" style="font-family:'Syne',sans-serif;">
+      React Components (interactive)
+    </h2>
+    <p class="text-slate-500 text-sm mb-8">
+      Each card below is a <code class="bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded font-mono text-xs">ProjectCard.tsx</code>
+      React component with <code class="bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded font-mono text-xs">client:load</code>.
+      It uses <code class="bg-slate-100 text-sky-600 px-1.5 py-0.5 rounded font-mono text-xs">useState</code> to track hover state
+      — server components cannot do this.
+    </p>
+
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
+      {projects.map((p) => (
+        <!-- client:load = hydrated immediately on page load, full React interactivity -->
+        <ProjectCard
+          client:load
+          title={p.title}
+          tag={p.tag}
+          description={p.description}
+          href={p.href}
+          icon={p.icon}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- CLIENT DIRECTIVE REFERENCE -->
+  <div class="px-[8%] pb-16">
+    <div class="bg-slate-900 rounded-2xl p-8 max-w-2xl">
+      <p class="text-xs font-semibold tracking-widest uppercase text-slate-400 mb-4">Client Directives Reference</p>
+      <div class="flex flex-col gap-3">
+        {[
+          { dir: 'client:load',    desc: 'Hydrate immediately on page load' },
+          { dir: 'client:idle',    desc: 'Hydrate when browser is idle (less urgent UI)' },
+          { dir: 'client:visible', desc: 'Hydrate when component enters viewport' },
+          { dir: 'client:only',    desc: 'Skip SSR entirely — client render only' },
+        ].map(({ dir, desc }) => (
+          <div class="flex items-center gap-4">
+            <code class="text-sky-400 font-mono text-sm bg-slate-800 px-3 py-1 rounded-lg shrink-0">
+              {dir}
+            </code>
+            <span class="text-slate-400 text-sm">{desc}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+</Layout>

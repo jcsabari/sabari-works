@@ -1,272 +1,276 @@
----
-const title = "Sabari Works";
+﻿---
+import Layout from "../layouts/Layout.astro";
+import SiteIcon from "../components/SiteIcon.tsx";
 ---
 
-<html lang="en">
-<head>
-<title>{title}</title>
-
+<Layout title="Sabari Works  Video Editor & Motion Designer">
 <style>
+  .hero {
+    min-height: calc(100vh - 66px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 8%;
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 60px 6%; gap: 40px; }
+    .hero-visual { order: -1; }
+  }
 
-:root{
-  --bg:#020617;
-  --text:#e6e6e6;
-  --blue:#38bdf8;
-}
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
 
-html{
-  scroll-behavior:smooth;
-}
+  .hero-text h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .hero-text h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
 
-body{
-  margin:0;
-  font-family:system-ui,sans-serif;
-  color:var(--text);
+  .hero-tagline {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
 
-  background:
-  radial-gradient(circle at 20% 20%, #1e3a8a33, transparent 40%),
-  radial-gradient(circle at 80% 80%, #9333ea33, transparent 40%),
-  var(--bg);
-}
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .pill {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
 
-/* layout */
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(14,165,233,0.3);
+  }
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(14,165,233,0.4); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); background: rgba(14,165,233,0.04); transform: translateY(-2px); }
 
-section{
-  padding:80px 10%;
-}
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-wrap {
+    position: relative;
+    width: 360px;
+    max-width: 100%;
+  }
+  @media (max-width: 900px) {
+    .profile-wrap { width: 240px; }
+  }
+  .profile-ring {
+    position: absolute;
+    inset: -16px;
+    border-radius: 999px;
+    background: conic-gradient(from 180deg, rgba(14,165,233,0.35), rgba(124,58,237,0.25), transparent 60%);
+    animation: spin 10s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .profile-glow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(14,165,233,0.12) 0%, transparent 65%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
+  .profile-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 999px;
+    display: block;
+    border: 4px solid var(--surface);
+    box-shadow: 0 24px 64px rgba(14,165,233,0.18), 0 4px 24px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+  }
+  .profile-badge {
+    position: absolute;
+    bottom: 16px;
+    right: -12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow-lg);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    white-space: nowrap;
+  }
+  .profile-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+  .showreel-section {
+    padding: 0 8% 80px;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+  }
+  .showreel-label-top {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .showreel-frame {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    max-width: 800px;
+  }
+  .showreel-frame iframe { aspect-ratio: 16/9; border-radius: 0; width: 100%; display: block; }
 
-h1,h2{
-  margin-bottom:24px;
-  font-weight:600;
-}
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; }
 
-/* hero */
-
-.hero{
-  text-align:center;
-}
-
-.hero h1{
-  font-size:42px;
-}
-
-/* grid */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
-}
-
-/* glass cards */
-
-.card{
-  padding:30px;
-  text-align:center;
-  cursor:pointer;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:16px;
-
-  transition:all .3s ease;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:var(--blue);
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
-}
-
-/* video */
-
-iframe{
-  width:100%;
-  aspect-ratio:16/9;
-  border:none;
-  border-radius:12px;
-}
-
-/* links */
-
-a{
-  color:var(--blue);
-  text-decoration:none;
-}
-
-/* contact */
-
-.contact-section{
-  text-align:center;
-}
-
-.contact-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-  max-width:900px;
-  margin:auto;
-  margin-bottom:60px;
-}
-
-.contact-card{
-  padding:30px;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,0.1);
-
-  transition:.3s;
-}
-
-.contact-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
-}
-
-/* resume */
-
-.resume-box{
-  max-width:600px;
-  margin:auto;
-
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.1);
-
-  padding:40px;
-}
-
-/* buttons */
-
-.resume-btn{
-  display:inline-block;
-  margin:10px;
-  padding:12px 28px;
-
-  border-radius:8px;
-
-  background:var(--blue);
-  color:black;
-  font-weight:600;
-
-  box-shadow:0 0 12px var(--blue);
-
-  transition:.3s;
-}
-
-.resume-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 0 25px var(--blue);
-}
-
-.download{
-  background:#22c55e;
-  box-shadow:0 0 12px #22c55e;
-}
-
-.download:hover{
-  box-shadow:0 0 25px #22c55e;
-}
-
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 32px;
+    font-weight: 500;
+  }
+  .scroll-hint span { width: 24px; height: 1px; background: var(--border-strong); }
 </style>
-</head>
-
-<body>
-
-<!-- HERO -->
 
 <section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Open for projects</div>
+    <h1>Video Editor &amp;<br/><em>Motion Designer</em></h1>
+    <p class="hero-tagline">
+      Hi, I'm Sabari  I craft cinematic videos, motion graphics, VFX, and 3D visuals
+      that make brands and stories come alive.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">Video Editing</span>
+      <span class="pill">Motion Graphics</span>
+      <span class="pill">VFX</span>
+      <span class="pill">Color Grading</span>
+      <span class="pill">3D Modelling</span>
+    </div>
+    <div class="hero-cta">
+      <a href="/works" class="btn-primary">View My Work <SiteIcon name="arrowRight" size={14} /></a>
+      <a href="/contact" class="btn-outline"><SiteIcon name="mail" size={14} /> Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Exp.</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Specialties</div>
+      </div>
+    </div>
+  </div>
 
-<h1>Sabari Works</h1>
+  <div class="hero-visual reveal">
+    <div class="profile-wrap">
+      <div class="profile-glow"></div>
+      <div class="profile-ring"></div>
+      <img src="/profile.jpeg" alt="Sabari JC — Video Editor & Motion Designer" class="profile-img" />
+      <div class="profile-badge">Available for work</div>
+    </div>
+  </div>
+</section>
 
-<iframe
-src="https://www.youtube.com/embed/x7VlLZrcX7Y"
-allowfullscreen>
-</iframe>
-
+<section class="showreel-section reveal">
+  <div class="showreel-label-top">Showreel</div>
+  <div class="showreel-frame">
+    <iframe
+      src="https://www.youtube.com/embed/x7VlLZrcX7Y"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
 </section>
 
 
-<!-- WORK -->
-
-<section>
-
-<h2>Work</h2>
-
-<div class="grid">
-
-<a href="/client-work" class="card">Client Works</a>
-<a href="/motion-graphics" class="card">Motion Graphics</a>
-<a href="/vfx" class="card">VFX</a>
-<a href="/color-correction" class="card">Color Correction</a>
-<a href="/3d-modelling" class="card">3D Modelling</a>
-
-</div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact" class="contact-section">
-
-<h2>Contact</h2>
-
-<div class="contact-grid">
-
-<div class="contact-card">
-<h3>Email</h3>
-<a href="mailto:sabari1132006@gmail.com">
-sabari1132006@gmail.com
-</a>
-</div>
-
-<div class="contact-card">
-<h3>Phone</h3>
-<a href="tel:+919367778466">
-+91 9367778466
-</a>
-</div>
-
-<div class="contact-card">
-<h3>LinkedIn</h3>
-<a href="https://www.linkedin.com/in/sabari-jc-357007369" target="_blank">
-sabari-jc-357007369
-</a>
-</div>
-
-</div>
-
-
-<div class="resume-box">
-
-<h2>Resume</h2>
-
-<p>Download my latest resume to see my skills and experience.</p>
-
-<a href="/sabari_resume.pdf" class="resume-btn" target="_blank">
-View Resume
-</a>
-
-<a
-href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7"
-class="resume-btn download"
-target="_blank">
-
-Download Resume
-
-</a>
-
-</div>
-
-</section>
-
-</body>
-</html>
+</Layout>

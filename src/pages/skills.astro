@@ -1,0 +1,338 @@
+﻿---
+import Layout from "../layouts/Layout.astro";
+import SiteIcon from "../components/SiteIcon.tsx";
+
+const skills = [
+  {
+    area: "Video Editing",
+    iconKey: "video",
+    level: 95,
+    desc: "End-to-end editorial including pacing, audio sync, colour, and export optimisation for broadcast and social.",
+    tags: ["Premiere Pro", "DaVinci Resolve", "Final Cut Pro"]
+  },
+  {
+    area: "Motion Graphics",
+    iconKey: "motion",
+    level: 88,
+    desc: "Animated titles, lower-thirds, explainer graphics, and social-first content with smooth transitions.",
+    tags: ["After Effects", "Cinema 4D", "Lottie"]
+  },
+  {
+    area: "VFX & Compositing",
+    iconKey: "vfx",
+    level: 80,
+    desc: "Motion tracking, screen replacements, particle effects, and seamless CG integration into live footage.",
+    tags: ["After Effects", "Mocha", "Nuke"]
+  },
+  {
+    area: "Color Grading",
+    iconKey: "color",
+    level: 85,
+    desc: "Colour pipeline management, LUT creation, scene-to-scene consistency, and cinematic grade delivery.",
+    tags: ["DaVinci Resolve", "Lumetri", "SpeedGrade"]
+  },
+  {
+    area: "3D Modelling & Render",
+    iconKey: "threed",
+    level: 75,
+    desc: "Hard-surface modelling, UV unwrapping, lighting rigs, and photorealistic render output.",
+    tags: ["Blender", "Cinema 4D", "Octane"]
+  }
+];
+
+const softwareStack = [
+  { name: "Adobe After Effects", cat: "Motion / VFX",  iconKey: "aftereffects" },
+  { name: "Adobe Premiere Pro",  cat: "Editing",       iconKey: "premiere"     },
+  { name: "DaVinci Resolve",     cat: "Color / Editing",iconKey: "davinci"     },
+  { name: "Blender",             cat: "3D",            iconKey: "blender"      },
+  { name: "Cinema 4D",           cat: "3D / Motion",   iconKey: "cinema4d"     },
+  { name: "Adobe Photoshop",     cat: "Design",        iconKey: "photoshop"    },
+  { name: "Adobe Illustrator",   cat: "Design",        iconKey: "illustrator"  },
+  { name: "Mocha Pro",           cat: "Tracking",      iconKey: "mocha"        }
+];
+---
+
+<Layout title="Skills & Resume | Sabari Works">
+<style>
+  .skills-hero {
+    padding: 80px 8% 64px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+  .skills-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -60px;
+    width: 440px; height: 440px;
+    background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .skills-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: 8%;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(14,165,233,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 20px;
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .skills-hero h1 { margin-bottom: 16px; }
+  .skills-hero h1 em { font-style: normal; color: var(--accent); }
+  .skills-hero > p { max-width: 560px; font-size: 16px; line-height: 1.75; margin-bottom: 32px; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .hero-chip strong { color: var(--text); font-weight: 700; font-size: 14px; }
+
+  /* SKILLS GRID */
+  .skills-section { padding: 64px 8%; }
+  .skills-section h2 { margin-bottom: 36px; }
+
+  .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .skill-card {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+  .skill-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .skill-name-row { display: flex; align-items: center; gap: 10px; }
+  .skill-icon {
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--accent);
+  }
+  .skill-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
+  .skill-pct { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--accent); }
+
+  .skill-bar-track {
+    height: 5px;
+    background: var(--surface-alt);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 14px 0 12px;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform-origin: left;
+    animation: barGrow 0.9s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* SOFTWARE */
+  .software-section {
+    padding: 0 8% 64px;
+  }
+  .software-section h2 { margin-bottom: 28px; }
+  .software-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .software-chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .software-chip:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .software-chip-left { display: flex; align-items: center; gap: 10px; color: var(--accent); }
+  .software-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .software-cat {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(14,165,233,0.08);
+    border: 1px solid rgba(14,165,233,0.18);
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  /* RESUME */
+  .resume-section {
+    padding: 0 8% 80px;
+  }
+  .resume-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    box-shadow: var(--shadow-md);
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .resume-text h2 { font-size: 24px; margin-bottom: 10px; }
+  .resume-text p { font-size: 14px; max-width: 380px; }
+  .resume-btns { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; }
+  .btn-resume-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 10px rgba(14,165,233,0.25);
+  }
+  .btn-resume-view:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,165,233,0.35); }
+  .btn-resume-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .btn-resume-dl:hover { border-color: var(--accent); background: rgba(14,165,233,0.04); transform: translateY(-2px); }
+</style>
+
+<div class="skills-hero">
+  <div class="hero-eyebrow">Background</div>
+  <h1>Skills &amp; <em>Resume</em></h1>
+  <p>Core competencies, toolset, and experience across video production, motion design, and post-production workflows.</p>
+  <div class="hero-chips">
+    <span class="hero-chip"><strong>5</strong> Core Skills</span>
+    <span class="hero-chip"><strong>8</strong> Software Tools</span>
+    <span class="hero-chip"><strong>3+</strong> Years Experience</span>
+  </div>
+</div>
+
+<section class="skills-section">
+  <h2 class="reveal">Core Skills</h2>
+  <div class="skills-list reveal-group">
+    {skills.map((s) => (
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name-row">
+            <div class="skill-icon"><SiteIcon name={s.iconKey} size={20} /></div>
+            <span class="skill-name">{s.area}</span>
+          </div>
+          <span class="skill-pct">{s.level}%</span>
+        </div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" style={`width:${s.level}%`}></div>
+        </div>
+        <p class="skill-desc">{s.desc}</p>
+        <div class="skill-tags">
+          {s.tags.map(t => <span class="skill-tag">{t}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="software-section">
+  <div class="section-label" style="margin-top:48px;">Toolset</div>
+  <h2 class="reveal">Software Stack</h2>
+  <div class="software-grid reveal-group">
+    {softwareStack.map((sw) => (
+      <div class="software-chip">
+        <div class="software-chip-left">
+          <SiteIcon name={sw.iconKey} size={17} />
+          <span class="software-name">{sw.name}</span>
+        </div>
+        <span class="software-cat">{sw.cat}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="resume-section">
+  <div class="resume-box reveal" style="margin-top:48px;">
+    <div class="resume-text">
+      <h2>Resume</h2>
+      <p>Download or view my full resume to see detailed work history, education, and skills.</p>
+    </div>
+    <div class="resume-btns">
+      <a href="/sabari_resume.pdf" class="btn-resume-view" target="_blank"><SiteIcon name="eye" size={14} /> View Resume</a>
+      <a href="https://drive.google.com/uc?export=download&id=1URSblavJtMmgegujhhuK9LBd_IRoKGk7" class="btn-resume-dl" target="_blank"><SiteIcon name="download" size={14} /> Download PDF</a>
+    </div>
+  </div>
+</section>
+
+
+</Layout>
