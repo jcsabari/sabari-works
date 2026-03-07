@@ -6,49 +6,46 @@ const skills = [
   {
     area: "Video Editing",
     iconKey: "video",
-    level: 95,
+    accent: "#0ea5e9",
     desc: "End-to-end editorial including pacing, audio sync, colour, and export optimisation for broadcast and social.",
-    tags: ["Premiere Pro", "DaVinci Resolve"]
+    tags: ["Premiere Pro", "After Effects", "DaVinci Resolve"]
   },
   {
     area: "Motion Graphics",
     iconKey: "motion",
-    level: 88,
+    accent: "#7c3aed",
     desc: "Animated titles, lower-thirds, explainer graphics, and social-first content with smooth transitions.",
     tags: ["After Effects"]
   },
   {
     area: "VFX & Compositing",
     iconKey: "vfx",
-    level: 80,
+    accent: "#ec4899",
     desc: "Motion tracking, screen replacements, particle effects, and seamless CG integration into live footage.",
-    tags: ["After Effects", "Blender" , "Mocha"]
+    tags: ["After Effects", "Blender"]
   },
   {
-    area: "Color Grading",
+    area: "Colour Grading",
     iconKey: "color",
-    level: 85,
+    accent: "#f59e0b",
     desc: "Colour pipeline management, LUT creation, scene-to-scene consistency, and cinematic grade delivery.",
     tags: ["DaVinci Resolve"]
   },
   {
-    area: "3D Modelling & Render",
+    area: "3D Modelling",
     iconKey: "threed",
-    level: 75,
+    accent: "#10b981",
     desc: "Hard-surface modelling, UV unwrapping, lighting rigs, and photorealistic render output.",
-    tags: ["Maya", "Blender", "Adobe Substance 3D Painter"]
+    tags: ["Maya", "Blender"]
   }
 ];
 
 const softwareStack = [
-  { name: "Adobe After Effects", cat: "Motion / VFX",  iconKey: "aftereffects" },
-  { name: "Adobe Premiere Pro",  cat: "Editing",       iconKey: "premiere"     },
-  { name: "DaVinci Resolve",     cat: "Color / Editing",iconKey: "davinci"     },
-  { name: "Blender",             cat: "3D / Tracking",            iconKey: "blender"      },
-  { name: "Cinema 4D",           cat: "3D",   iconKey: "Maya"     },
-  { name: "Adobe Photoshop",     cat: "Design",        iconKey: "photoshop"    },
-  { name: "Adobe Illustrator",   cat: "Design",        iconKey: "illustrator"  },
-  { name: "Mocha Pro",           cat: "Rotoscoping",      iconKey: "mocha"        }
+  { name: "Adobe After Effects", cat: "Motion / VFX / Editing", iconKey: "aftereffects" },
+  { name: "Adobe Premiere Pro",  cat: "Video Editing",          iconKey: "premiere"     },
+  { name: "DaVinci Resolve",     cat: "Colour Grading / Editing",iconKey: "davinci"     },
+  { name: "Blender",             cat: "VFX / 3D Modelling",     iconKey: "blender"      },
+  { name: "Maya",                cat: "3D Modelling",           iconKey: "threed"       }
 ];
 ---
 
@@ -111,76 +108,93 @@ const softwareStack = [
   }
   .hero-chip strong { color: var(--text); font-weight: 700; font-size: 14px; }
 
-  /* SKILLS GRID */
+  /* ── SKILLS GRID ── */
   .skills-section { padding: 64px 8%; }
   .skills-section h2 { margin-bottom: 36px; }
 
   .skills-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
   }
+
+  /* Card */
   .skill-card {
-    padding: 28px;
+    position: relative;
+    padding: 32px 24px 26px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 20px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    overflow: hidden;
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+  }
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--card-glow, transparent);
+    opacity: 0;
+    transition: opacity 0.35s;
+    pointer-events: none;
   }
   .skill-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-md);
   }
-  .skill-header {
+  .skill-card:hover::before { opacity: 1; }
+
+  /* Icon row */
+  .skill-icon-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
+    gap: 8px;
+    margin-bottom: 6px;
   }
-  .skill-name-row { display: flex; align-items: center; gap: 10px; }
   .skill-icon {
-    font-size: 20px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
     background: var(--surface-alt);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 9px;
     color: var(--accent);
+    flex-shrink: 0;
   }
-  .skill-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
-  .skill-pct { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; color: var(--accent); }
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
 
-  .skill-bar-track {
-    height: 5px;
-    background: var(--surface-alt);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 14px 0 12px;
+  .skill-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 8px 0 16px;
   }
-  .skill-bar-fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transform-origin: left;
-    animation: barGrow 0.9s cubic-bezier(0.22,1,0.36,1) both;
-  }
-  @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-  .skill-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  /* Tags */
+  .skill-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
   .skill-tag {
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--muted);
     background: var(--surface-alt);
     border: 1px solid var(--border);
-    padding: 3px 10px;
+    padding: 4px 11px;
     border-radius: 20px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-card:hover .skill-tag {
+    border-color: var(--card-accent, var(--accent));
+    color: var(--card-accent, var(--accent));
   }
 
   /* SOFTWARE */
@@ -276,7 +290,7 @@ const softwareStack = [
   <p>Core competencies, toolset, and experience across video production, motion design, and post-production workflows.</p>
   <div class="hero-chips">
     <span class="hero-chip"><strong>5</strong> Core Skills</span>
-    <span class="hero-chip"><strong>8</strong> Software Tools</span>
+    <span class="hero-chip"><strong>5</strong> Software Tools</span>
     <span class="hero-chip"><strong>3+</strong> Years Experience</span>
   </div>
 </div>
@@ -285,22 +299,26 @@ const softwareStack = [
   <h2 class="reveal">Core Skills</h2>
   <div class="skills-list reveal-group">
     {skills.map((s) => (
-      <div class="skill-card">
-        <div class="skill-header">
-          <div class="skill-name-row">
-            <div class="skill-icon"><SiteIcon name={s.iconKey} size={20} /></div>
+        <div
+          class="skill-card"
+          style={`--card-accent:${s.accent};--card-glow:radial-gradient(ellipse at 50% 0%, ${s.accent}12 0%, transparent 70%);border-color:var(--border);`}
+          onmouseenter={`this.style.borderColor='${s.accent}55'`}
+          onmouseleave={`this.style.borderColor='var(--border)'`}
+        >
+          {/* Name row */}
+          <div class="skill-icon-row">
+            <div class="skill-icon" style={`color:${s.accent};border-color:${s.accent}33;background:${s.accent}10`}>
+              <SiteIcon name={s.iconKey} size={17} />
+            </div>
             <span class="skill-name">{s.area}</span>
           </div>
-          <span class="skill-pct">{s.level}%</span>
+
+          <p class="skill-desc">{s.desc}</p>
+
+          <div class="skill-tags">
+            {s.tags.map(t => <span class="skill-tag">{t}</span>)}
+          </div>
         </div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" style={`width:${s.level}%`}></div>
-        </div>
-        <p class="skill-desc">{s.desc}</p>
-        <div class="skill-tags">
-          {s.tags.map(t => <span class="skill-tag">{t}</span>)}
-        </div>
-      </div>
     ))}
   </div>
 </section>
